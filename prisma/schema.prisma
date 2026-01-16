@@ -1,0 +1,181 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model SportFacilities {
+  id             BigInt   @id @default(autoincrement())
+  operator_id    BigInt
+  name           String?  @db.VarChar(20)
+  sport_type     BigInt
+  address        String?  @db.VarChar(50)
+  photo_url      String?  @db.VarChar(255)
+  cost           Int?
+  introduction   String?
+  information    String?
+  usage_guide    String?
+  contact_number String?  @db.VarChar(15)
+  url            String?  @db.VarChar(255)
+  link           String?  @db.VarChar(255)
+  created_at     DateTime? @default(now())
+  updated_at     DateTime? @updatedAt
+  region_id      BigInt
+
+  @@map("sport_facilities")
+
+  operator Users       @relation(fields: [operator_id], references: [id])
+  region   Region      @relation(fields: [region_id], references: [id])
+  sport    SportType   @relation(fields: [sport_type], references: [id])
+  reviews  Review[]
+}
+
+model Review {
+  id          BigInt   @id @default(autoincrement())
+  user_id     BigInt
+  facility_id BigInt
+  text        String?
+  created_at  DateTime? @default(now())
+  updated_at  DateTime? @updatedAt
+
+  @@map("review")
+
+  user     Users           @relation(fields: [user_id], references: [id])
+  facility SportFacilities @relation(fields: [facility_id], references: [id])
+  photos   ReviewPhotos[]
+}
+
+model JoinRequest {
+  id         BigInt   @id @default(autoincrement())
+  club_id    BigInt
+  user_id    BigInt
+  created_at DateTime? @default(now())
+
+  @@map("join_request")
+
+  club Clubs @relation(fields: [club_id], references: [id])
+  user Users @relation(fields: [user_id], references: [id])
+}
+
+model SportType {
+  id         BigInt  @id @default(autoincrement())
+  sport_type String? @db.VarChar(5)
+
+  @@map("sport_type")
+
+  facilities SportFacilities[]
+  clubs      Clubs[]
+}
+
+model Region {
+  id          BigInt  @id @default(autoincrement())
+  region_name String? @db.VarChar(10)
+
+  @@map("region")
+
+  users      Users[]
+  clubs      Clubs[]
+  facilities SportFacilities[]
+}
+
+model Clubs {
+  id                 BigInt   @id @default(autoincrement())
+  name               String?  @db.VarChar(20)
+  club_photo_url     String?  @db.VarChar(255)
+  capacity           Int?
+  activity_frequency String?  @db.VarChar(20)
+  join_requirement   String?  @db.VarChar(30)
+  summary            String?  @db.VarChar(50)
+  level              String?
+  age                String?
+  created_at         DateTime? @default(now())
+  updated_at         DateTime? @updatedAt
+  region_id          BigInt
+  sport_type_id      BigInt
+
+  @@map("clubs")
+
+  region     Region     @relation(fields: [region_id], references: [id])
+  sport_type SportType  @relation(fields: [sport_type_id], references: [id])
+
+  notices      Notice[]
+  joinRequests JoinRequest[]
+  members      UserClubs[]
+}
+
+model Notice {
+  id         BigInt   @id @default(autoincrement())
+  club_id    BigInt
+  user_id    BigInt
+  title      String?  @db.VarChar(30)
+  notice     String?
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("notice")
+
+  club Clubs @relation(fields: [club_id], references: [id])
+  user Users @relation(fields: [user_id], references: [id])
+}
+
+model Users {
+  id                 BigInt   @id @default(autoincrement())
+  name               String?  @db.VarChar(30)
+  phone_number       String?  @db.VarChar(30)
+  user_id            String?  @db.VarChar(20)
+  password           String?  @db.VarChar(12)
+  birth              DateTime? @db.Date()
+  gender             String?
+  profile_photo_url  String?  @db.VarChar(255)
+  email              String?  @db.VarChar(50)
+  introduce           String?
+  status             Boolean?
+  inactive_date      DateTime?
+  privacy_agreement  BigInt?
+  created_at         DateTime? @default(now())
+  updated_at         DateTime? @updatedAt
+  region_id          BigInt
+
+  @@map("users")
+
+  region        Region          @relation(fields: [region_id], references: [id])
+  facilities    SportFacilities[]
+  reviews       Review[]
+  notices       Notice[]
+  joinRequests  JoinRequest[]
+  clubs         UserClubs[]
+}
+
+model UserClubs {
+  id         BigInt   @id @default(autoincrement())
+  club_id    BigInt
+  user_id    BigInt
+  is_leader  Boolean?
+  created_at DateTime? @default(now())
+  updated_at DateTime? @updatedAt
+
+  @@map("user_clubs")
+
+  club Clubs @relation(fields: [club_id], references: [id])
+  user Users @relation(fields: [user_id], references: [id])
+}
+
+model ReviewPhotos {
+  photo_id   BigInt   @id @default(autoincrement())
+  review_id  BigInt
+  photo_url  String?  @db.VarChar(255)
+  uploaded_at DateTime? @default(now())
+
+  @@map("review_photos")
+
+  review Review @relation(fields: [review_id], references: [id])
+}
