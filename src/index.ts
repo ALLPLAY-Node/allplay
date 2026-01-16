@@ -1,12 +1,14 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import { PrismaClient } from "@prisma/client";
 import "./types/express";
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT;
+const prisma = new PrismaClient();
 
 app.use(cors()); // cors 방식 허용
 app.use(express.static("public")); // 정적 파일 접근
@@ -54,3 +56,11 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+
+// Graceful shutdown
+process.on("SIGINT", async () => {
+  await prisma.$disconnect();
+  process.exit(0);
+});
+
+export { prisma };
