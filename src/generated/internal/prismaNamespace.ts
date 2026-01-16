@@ -1305,9 +1305,7 @@ export const ClubsOrderByRelevanceFieldEnum = {
   club_photo_url: 'club_photo_url',
   activity_frequency: 'activity_frequency',
   join_requirement: 'join_requirement',
-  summary: 'summary',
-  level: 'level',
-  age: 'age'
+  summary: 'summary'
 } as const
 
 export type ClubsOrderByRelevanceFieldEnum = (typeof ClubsOrderByRelevanceFieldEnum)[keyof typeof ClubsOrderByRelevanceFieldEnum]
@@ -1326,7 +1324,6 @@ export const UsersOrderByRelevanceFieldEnum = {
   phone_number: 'phone_number',
   user_id: 'user_id',
   password: 'password',
-  gender: 'gender',
   profile_photo_url: 'profile_photo_url',
   email: 'email',
   introduce: 'introduce'
@@ -1373,6 +1370,27 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'Level'
+ */
+export type EnumLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Level'>
+    
+
+
+/**
+ * Reference to a field of type 'Age'
+ */
+export type EnumAgeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Age'>
+    
+
+
+/**
+ * Reference to a field of type 'Gender'
+ */
+export type EnumGenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Gender'>
     
 
 

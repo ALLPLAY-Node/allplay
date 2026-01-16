@@ -48,8 +48,8 @@ export type ClubsMinAggregateOutputType = {
   activity_frequency: string | null
   join_requirement: string | null
   summary: string | null
-  level: string | null
-  age: string | null
+  level: $Enums.Level | null
+  age: $Enums.Age | null
   created_at: Date | null
   updated_at: Date | null
   region_id: bigint | null
@@ -64,8 +64,8 @@ export type ClubsMaxAggregateOutputType = {
   activity_frequency: string | null
   join_requirement: string | null
   summary: string | null
-  level: string | null
-  age: string | null
+  level: $Enums.Level | null
+  age: $Enums.Age | null
   created_at: Date | null
   updated_at: Date | null
   region_id: bigint | null
@@ -247,8 +247,8 @@ export type ClubsGroupByOutputType = {
   activity_frequency: string | null
   join_requirement: string | null
   summary: string | null
-  level: string | null
-  age: string | null
+  level: $Enums.Level | null
+  age: $Enums.Age | null
   created_at: Date | null
   updated_at: Date | null
   region_id: bigint
@@ -286,8 +286,8 @@ export type ClubsWhereInput = {
   activity_frequency?: Prisma.StringNullableFilter<"Clubs"> | string | null
   join_requirement?: Prisma.StringNullableFilter<"Clubs"> | string | null
   summary?: Prisma.StringNullableFilter<"Clubs"> | string | null
-  level?: Prisma.StringNullableFilter<"Clubs"> | string | null
-  age?: Prisma.StringNullableFilter<"Clubs"> | string | null
+  level?: Prisma.EnumLevelNullableFilter<"Clubs"> | $Enums.Level | null
+  age?: Prisma.EnumAgeNullableFilter<"Clubs"> | $Enums.Age | null
   created_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   region_id?: Prisma.BigIntFilter<"Clubs"> | bigint | number
@@ -332,8 +332,8 @@ export type ClubsWhereUniqueInput = Prisma.AtLeast<{
   activity_frequency?: Prisma.StringNullableFilter<"Clubs"> | string | null
   join_requirement?: Prisma.StringNullableFilter<"Clubs"> | string | null
   summary?: Prisma.StringNullableFilter<"Clubs"> | string | null
-  level?: Prisma.StringNullableFilter<"Clubs"> | string | null
-  age?: Prisma.StringNullableFilter<"Clubs"> | string | null
+  level?: Prisma.EnumLevelNullableFilter<"Clubs"> | $Enums.Level | null
+  age?: Prisma.EnumAgeNullableFilter<"Clubs"> | $Enums.Age | null
   created_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   region_id?: Prisma.BigIntFilter<"Clubs"> | bigint | number
@@ -377,8 +377,8 @@ export type ClubsScalarWhereWithAggregatesInput = {
   activity_frequency?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
   join_requirement?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
   summary?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
-  level?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
-  age?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
+  level?: Prisma.EnumLevelNullableWithAggregatesFilter<"Clubs"> | $Enums.Level | null
+  age?: Prisma.EnumAgeNullableWithAggregatesFilter<"Clubs"> | $Enums.Age | null
   created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Clubs"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Clubs"> | Date | string | null
   region_id?: Prisma.BigIntWithAggregatesFilter<"Clubs"> | bigint | number
@@ -393,8 +393,8 @@ export type ClubsCreateInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region: Prisma.RegionCreateNestedOneWithoutClubsInput
@@ -412,8 +412,8 @@ export type ClubsUncheckedCreateInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
@@ -431,8 +431,8 @@ export type ClubsUpdateInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region?: Prisma.RegionUpdateOneRequiredWithoutClubsNestedInput
@@ -450,8 +450,8 @@ export type ClubsUncheckedUpdateInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -469,8 +469,8 @@ export type ClubsCreateManyInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
@@ -485,8 +485,8 @@ export type ClubsUpdateManyMutationInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -499,8 +499,8 @@ export type ClubsUncheckedUpdateManyInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -688,6 +688,14 @@ export type ClubsUncheckedUpdateManyWithoutRegionNestedInput = {
   deleteMany?: Prisma.ClubsScalarWhereInput | Prisma.ClubsScalarWhereInput[]
 }
 
+export type NullableEnumLevelFieldUpdateOperationsInput = {
+  set?: $Enums.Level | null
+}
+
+export type NullableEnumAgeFieldUpdateOperationsInput = {
+  set?: $Enums.Age | null
+}
+
 export type ClubsCreateNestedOneWithoutNoticesInput = {
   create?: Prisma.XOR<Prisma.ClubsCreateWithoutNoticesInput, Prisma.ClubsUncheckedCreateWithoutNoticesInput>
   connectOrCreate?: Prisma.ClubsCreateOrConnectWithoutNoticesInput
@@ -724,8 +732,8 @@ export type ClubsCreateWithoutJoinRequestsInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region: Prisma.RegionCreateNestedOneWithoutClubsInput
@@ -742,8 +750,8 @@ export type ClubsUncheckedCreateWithoutJoinRequestsInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
@@ -776,8 +784,8 @@ export type ClubsUpdateWithoutJoinRequestsInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region?: Prisma.RegionUpdateOneRequiredWithoutClubsNestedInput
@@ -794,8 +802,8 @@ export type ClubsUncheckedUpdateWithoutJoinRequestsInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -812,8 +820,8 @@ export type ClubsCreateWithoutSport_typeInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region: Prisma.RegionCreateNestedOneWithoutClubsInput
@@ -830,8 +838,8 @@ export type ClubsUncheckedCreateWithoutSport_typeInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
@@ -877,8 +885,8 @@ export type ClubsScalarWhereInput = {
   activity_frequency?: Prisma.StringNullableFilter<"Clubs"> | string | null
   join_requirement?: Prisma.StringNullableFilter<"Clubs"> | string | null
   summary?: Prisma.StringNullableFilter<"Clubs"> | string | null
-  level?: Prisma.StringNullableFilter<"Clubs"> | string | null
-  age?: Prisma.StringNullableFilter<"Clubs"> | string | null
+  level?: Prisma.EnumLevelNullableFilter<"Clubs"> | $Enums.Level | null
+  age?: Prisma.EnumAgeNullableFilter<"Clubs"> | $Enums.Age | null
   created_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   region_id?: Prisma.BigIntFilter<"Clubs"> | bigint | number
@@ -893,8 +901,8 @@ export type ClubsCreateWithoutRegionInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   sport_type: Prisma.SportTypeCreateNestedOneWithoutClubsInput
@@ -911,8 +919,8 @@ export type ClubsUncheckedCreateWithoutRegionInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   sport_type_id: bigint | number
@@ -955,8 +963,8 @@ export type ClubsCreateWithoutNoticesInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region: Prisma.RegionCreateNestedOneWithoutClubsInput
@@ -973,8 +981,8 @@ export type ClubsUncheckedCreateWithoutNoticesInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
@@ -1007,8 +1015,8 @@ export type ClubsUpdateWithoutNoticesInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region?: Prisma.RegionUpdateOneRequiredWithoutClubsNestedInput
@@ -1025,8 +1033,8 @@ export type ClubsUncheckedUpdateWithoutNoticesInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -1043,8 +1051,8 @@ export type ClubsCreateWithoutMembersInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region: Prisma.RegionCreateNestedOneWithoutClubsInput
@@ -1061,8 +1069,8 @@ export type ClubsUncheckedCreateWithoutMembersInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
@@ -1095,8 +1103,8 @@ export type ClubsUpdateWithoutMembersInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region?: Prisma.RegionUpdateOneRequiredWithoutClubsNestedInput
@@ -1113,8 +1121,8 @@ export type ClubsUncheckedUpdateWithoutMembersInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -1131,8 +1139,8 @@ export type ClubsCreateManySport_typeInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
@@ -1146,8 +1154,8 @@ export type ClubsUpdateWithoutSport_typeInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region?: Prisma.RegionUpdateOneRequiredWithoutClubsNestedInput
@@ -1164,8 +1172,8 @@ export type ClubsUncheckedUpdateWithoutSport_typeInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -1182,8 +1190,8 @@ export type ClubsUncheckedUpdateManyWithoutSport_typeInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -1197,8 +1205,8 @@ export type ClubsCreateManyRegionInput = {
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
-  level?: string | null
-  age?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   sport_type_id: bigint | number
@@ -1212,8 +1220,8 @@ export type ClubsUpdateWithoutRegionInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sport_type?: Prisma.SportTypeUpdateOneRequiredWithoutClubsNestedInput
@@ -1230,8 +1238,8 @@ export type ClubsUncheckedUpdateWithoutRegionInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sport_type_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -1248,8 +1256,8 @@ export type ClubsUncheckedUpdateManyWithoutRegionInput = {
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  level?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  age?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sport_type_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -1371,8 +1379,8 @@ export type $ClubsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     activity_frequency: string | null
     join_requirement: string | null
     summary: string | null
-    level: string | null
-    age: string | null
+    level: $Enums.Level | null
+    age: $Enums.Age | null
     created_at: Date | null
     updated_at: Date | null
     region_id: bigint
@@ -1758,8 +1766,8 @@ export interface ClubsFieldRefs {
   readonly activity_frequency: Prisma.FieldRef<"Clubs", 'String'>
   readonly join_requirement: Prisma.FieldRef<"Clubs", 'String'>
   readonly summary: Prisma.FieldRef<"Clubs", 'String'>
-  readonly level: Prisma.FieldRef<"Clubs", 'String'>
-  readonly age: Prisma.FieldRef<"Clubs", 'String'>
+  readonly level: Prisma.FieldRef<"Clubs", 'Level'>
+  readonly age: Prisma.FieldRef<"Clubs", 'Age'>
   readonly created_at: Prisma.FieldRef<"Clubs", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Clubs", 'DateTime'>
   readonly region_id: Prisma.FieldRef<"Clubs", 'BigInt'>

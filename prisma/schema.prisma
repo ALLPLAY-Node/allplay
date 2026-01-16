@@ -13,6 +13,26 @@ datasource db {
   provider = "mysql"
 }
 
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum Age {
+  TEENS
+  TWENTIES
+  THIRTIES
+  FORTIES
+  FIFTIES
+  OVER_SIXTIES
+}
+
+enum Level {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
 model SportFacilities {
   id             BigInt   @id @default(autoincrement())
   operator_id    BigInt
@@ -95,8 +115,8 @@ model Clubs {
   activity_frequency String?  @db.VarChar(20)
   join_requirement   String?  @db.VarChar(30)
   summary            String?  @db.VarChar(50)
-  level              String?
-  age                String?
+  level              Level?
+  age                Age?
   created_at         DateTime? @default(now())
   updated_at         DateTime? @updatedAt
   region_id          BigInt
@@ -134,7 +154,8 @@ model Users {
   user_id            String?  @db.VarChar(20)
   password           String?  @db.VarChar(12)
   birth              DateTime? @db.Date()
-  gender             String?
+  /// 성별 (MALE: 남성, FEMALE: 여성)
+  gender             Gender?
   profile_photo_url  String?  @db.VarChar(255)
   email              String?  @db.VarChar(50)
   introduce           String?

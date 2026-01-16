@@ -9,7 +9,30 @@
 * 🟢 You can import this file directly.
 */
 
+export const Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE'
+} as const
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const Age = {
+  TEENS: 'TEENS',
+  TWENTIES: 'TWENTIES',
+  THIRTIES: 'THIRTIES',
+  FORTIES: 'FORTIES',
+  FIFTIES: 'FIFTIES',
+  OVER_SIXTIES: 'OVER_SIXTIES'
+} as const
+
+export type Age = (typeof Age)[keyof typeof Age]
+
+
+export const Level = {
+  BEGINNER: 'BEGINNER',
+  INTERMEDIATE: 'INTERMEDIATE',
+  ADVANCED: 'ADVANCED'
+} as const
+
+export type Level = (typeof Level)[keyof typeof Level]
