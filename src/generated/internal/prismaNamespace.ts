@@ -393,6 +393,7 @@ export const ModelName = {
   Notice: 'Notice',
   Users: 'Users',
   UserClubs: 'UserClubs',
+  ClubPhotos: 'ClubPhotos',
   ReviewPhotos: 'ReviewPhotos'
 } as const
 
@@ -409,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "sportFacilities" | "review" | "joinRequest" | "sportType" | "region" | "clubs" | "notice" | "users" | "userClubs" | "reviewPhotos"
+    modelProps: "sportFacilities" | "review" | "joinRequest" | "sportType" | "region" | "clubs" | "notice" | "users" | "userClubs" | "clubPhotos" | "reviewPhotos"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1007,6 +1008,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ClubPhotos: {
+      payload: Prisma.$ClubPhotosPayload<ExtArgs>
+      fields: Prisma.ClubPhotosFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClubPhotosFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClubPhotosPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClubPhotosFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClubPhotosPayload>
+        }
+        findFirst: {
+          args: Prisma.ClubPhotosFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClubPhotosPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClubPhotosFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClubPhotosPayload>
+        }
+        findMany: {
+          args: Prisma.ClubPhotosFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClubPhotosPayload>[]
+        }
+        create: {
+          args: Prisma.ClubPhotosCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClubPhotosPayload>
+        }
+        createMany: {
+          args: Prisma.ClubPhotosCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ClubPhotosDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClubPhotosPayload>
+        }
+        update: {
+          args: Prisma.ClubPhotosUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClubPhotosPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClubPhotosDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClubPhotosUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ClubPhotosUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClubPhotosPayload>
+        }
+        aggregate: {
+          args: Prisma.ClubPhotosAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClubPhotos>
+        }
+        groupBy: {
+          args: Prisma.ClubPhotosGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClubPhotosGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClubPhotosCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClubPhotosCountAggregateOutputType> | number
+        }
+      }
+    }
     ReviewPhotos: {
       payload: Prisma.$ReviewPhotosPayload<ExtArgs>
       fields: Prisma.ReviewPhotosFieldRefs
@@ -1166,7 +1233,8 @@ export type SportTypeScalarFieldEnum = (typeof SportTypeScalarFieldEnum)[keyof t
 
 export const RegionScalarFieldEnum = {
   id: 'id',
-  region_name: 'region_name'
+  city: 'city',
+  district: 'district'
 } as const
 
 export type RegionScalarFieldEnum = (typeof RegionScalarFieldEnum)[keyof typeof RegionScalarFieldEnum]
@@ -1175,13 +1243,14 @@ export type RegionScalarFieldEnum = (typeof RegionScalarFieldEnum)[keyof typeof 
 export const ClubsScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  club_photo_url: 'club_photo_url',
   capacity: 'capacity',
   activity_frequency: 'activity_frequency',
   join_requirement: 'join_requirement',
   summary: 'summary',
   level: 'level',
   age: 'age',
+  contact_number: 'contact_number',
+  homepage_url: 'homepage_url',
   created_at: 'created_at',
   updated_at: 'updated_at',
   region_id: 'region_id',
@@ -1236,6 +1305,16 @@ export const UserClubsScalarFieldEnum = {
 } as const
 
 export type UserClubsScalarFieldEnum = (typeof UserClubsScalarFieldEnum)[keyof typeof UserClubsScalarFieldEnum]
+
+
+export const ClubPhotosScalarFieldEnum = {
+  id: 'id',
+  club_id: 'club_id',
+  club_photo_url: 'club_photo_url',
+  uploaded_at: 'uploaded_at'
+} as const
+
+export type ClubPhotosScalarFieldEnum = (typeof ClubPhotosScalarFieldEnum)[keyof typeof ClubPhotosScalarFieldEnum]
 
 
 export const ReviewPhotosScalarFieldEnum = {
@@ -1294,7 +1373,8 @@ export type SportTypeOrderByRelevanceFieldEnum = (typeof SportTypeOrderByRelevan
 
 
 export const RegionOrderByRelevanceFieldEnum = {
-  region_name: 'region_name'
+  city: 'city',
+  district: 'district'
 } as const
 
 export type RegionOrderByRelevanceFieldEnum = (typeof RegionOrderByRelevanceFieldEnum)[keyof typeof RegionOrderByRelevanceFieldEnum]
@@ -1302,10 +1382,11 @@ export type RegionOrderByRelevanceFieldEnum = (typeof RegionOrderByRelevanceFiel
 
 export const ClubsOrderByRelevanceFieldEnum = {
   name: 'name',
-  club_photo_url: 'club_photo_url',
   activity_frequency: 'activity_frequency',
   join_requirement: 'join_requirement',
-  summary: 'summary'
+  summary: 'summary',
+  contact_number: 'contact_number',
+  homepage_url: 'homepage_url'
 } as const
 
 export type ClubsOrderByRelevanceFieldEnum = (typeof ClubsOrderByRelevanceFieldEnum)[keyof typeof ClubsOrderByRelevanceFieldEnum]
@@ -1330,6 +1411,13 @@ export const UsersOrderByRelevanceFieldEnum = {
 } as const
 
 export type UsersOrderByRelevanceFieldEnum = (typeof UsersOrderByRelevanceFieldEnum)[keyof typeof UsersOrderByRelevanceFieldEnum]
+
+
+export const ClubPhotosOrderByRelevanceFieldEnum = {
+  club_photo_url: 'club_photo_url'
+} as const
+
+export type ClubPhotosOrderByRelevanceFieldEnum = (typeof ClubPhotosOrderByRelevanceFieldEnum)[keyof typeof ClubPhotosOrderByRelevanceFieldEnum]
 
 
 export const ReviewPhotosOrderByRelevanceFieldEnum = {
@@ -1511,6 +1599,7 @@ export type GlobalOmitConfig = {
   notice?: Prisma.NoticeOmit
   users?: Prisma.UsersOmit
   userClubs?: Prisma.UserClubsOmit
+  clubPhotos?: Prisma.ClubPhotosOmit
   reviewPhotos?: Prisma.ReviewPhotosOmit
 }
 

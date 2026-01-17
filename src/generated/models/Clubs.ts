@@ -43,13 +43,14 @@ export type ClubsSumAggregateOutputType = {
 export type ClubsMinAggregateOutputType = {
   id: bigint | null
   name: string | null
-  club_photo_url: string | null
   capacity: number | null
   activity_frequency: string | null
   join_requirement: string | null
   summary: string | null
   level: $Enums.Level | null
   age: $Enums.Age | null
+  contact_number: string | null
+  homepage_url: string | null
   created_at: Date | null
   updated_at: Date | null
   region_id: bigint | null
@@ -59,13 +60,14 @@ export type ClubsMinAggregateOutputType = {
 export type ClubsMaxAggregateOutputType = {
   id: bigint | null
   name: string | null
-  club_photo_url: string | null
   capacity: number | null
   activity_frequency: string | null
   join_requirement: string | null
   summary: string | null
   level: $Enums.Level | null
   age: $Enums.Age | null
+  contact_number: string | null
+  homepage_url: string | null
   created_at: Date | null
   updated_at: Date | null
   region_id: bigint | null
@@ -75,13 +77,14 @@ export type ClubsMaxAggregateOutputType = {
 export type ClubsCountAggregateOutputType = {
   id: number
   name: number
-  club_photo_url: number
   capacity: number
   activity_frequency: number
   join_requirement: number
   summary: number
   level: number
   age: number
+  contact_number: number
+  homepage_url: number
   created_at: number
   updated_at: number
   region_id: number
@@ -107,13 +110,14 @@ export type ClubsSumAggregateInputType = {
 export type ClubsMinAggregateInputType = {
   id?: true
   name?: true
-  club_photo_url?: true
   capacity?: true
   activity_frequency?: true
   join_requirement?: true
   summary?: true
   level?: true
   age?: true
+  contact_number?: true
+  homepage_url?: true
   created_at?: true
   updated_at?: true
   region_id?: true
@@ -123,13 +127,14 @@ export type ClubsMinAggregateInputType = {
 export type ClubsMaxAggregateInputType = {
   id?: true
   name?: true
-  club_photo_url?: true
   capacity?: true
   activity_frequency?: true
   join_requirement?: true
   summary?: true
   level?: true
   age?: true
+  contact_number?: true
+  homepage_url?: true
   created_at?: true
   updated_at?: true
   region_id?: true
@@ -139,13 +144,14 @@ export type ClubsMaxAggregateInputType = {
 export type ClubsCountAggregateInputType = {
   id?: true
   name?: true
-  club_photo_url?: true
   capacity?: true
   activity_frequency?: true
   join_requirement?: true
   summary?: true
   level?: true
   age?: true
+  contact_number?: true
+  homepage_url?: true
   created_at?: true
   updated_at?: true
   region_id?: true
@@ -242,13 +248,14 @@ export type ClubsGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type ClubsGroupByOutputType = {
   id: bigint
   name: string | null
-  club_photo_url: string | null
   capacity: number | null
   activity_frequency: string | null
   join_requirement: string | null
   summary: string | null
   level: $Enums.Level | null
   age: $Enums.Age | null
+  contact_number: string | null
+  homepage_url: string | null
   created_at: Date | null
   updated_at: Date | null
   region_id: bigint
@@ -281,13 +288,14 @@ export type ClubsWhereInput = {
   NOT?: Prisma.ClubsWhereInput | Prisma.ClubsWhereInput[]
   id?: Prisma.BigIntFilter<"Clubs"> | bigint | number
   name?: Prisma.StringNullableFilter<"Clubs"> | string | null
-  club_photo_url?: Prisma.StringNullableFilter<"Clubs"> | string | null
   capacity?: Prisma.IntNullableFilter<"Clubs"> | number | null
   activity_frequency?: Prisma.StringNullableFilter<"Clubs"> | string | null
   join_requirement?: Prisma.StringNullableFilter<"Clubs"> | string | null
   summary?: Prisma.StringNullableFilter<"Clubs"> | string | null
   level?: Prisma.EnumLevelNullableFilter<"Clubs"> | $Enums.Level | null
   age?: Prisma.EnumAgeNullableFilter<"Clubs"> | $Enums.Age | null
+  contact_number?: Prisma.StringNullableFilter<"Clubs"> | string | null
+  homepage_url?: Prisma.StringNullableFilter<"Clubs"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   region_id?: Prisma.BigIntFilter<"Clubs"> | bigint | number
@@ -297,18 +305,20 @@ export type ClubsWhereInput = {
   notices?: Prisma.NoticeListRelationFilter
   joinRequests?: Prisma.JoinRequestListRelationFilter
   members?: Prisma.UserClubsListRelationFilter
+  photos?: Prisma.ClubPhotosListRelationFilter
 }
 
 export type ClubsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
-  club_photo_url?: Prisma.SortOrderInput | Prisma.SortOrder
   capacity?: Prisma.SortOrderInput | Prisma.SortOrder
   activity_frequency?: Prisma.SortOrderInput | Prisma.SortOrder
   join_requirement?: Prisma.SortOrderInput | Prisma.SortOrder
   summary?: Prisma.SortOrderInput | Prisma.SortOrder
   level?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
+  contact_number?: Prisma.SortOrderInput | Prisma.SortOrder
+  homepage_url?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
   region_id?: Prisma.SortOrder
@@ -318,6 +328,7 @@ export type ClubsOrderByWithRelationInput = {
   notices?: Prisma.NoticeOrderByRelationAggregateInput
   joinRequests?: Prisma.JoinRequestOrderByRelationAggregateInput
   members?: Prisma.UserClubsOrderByRelationAggregateInput
+  photos?: Prisma.ClubPhotosOrderByRelationAggregateInput
   _relevance?: Prisma.ClubsOrderByRelevanceInput
 }
 
@@ -327,13 +338,14 @@ export type ClubsWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ClubsWhereInput[]
   NOT?: Prisma.ClubsWhereInput | Prisma.ClubsWhereInput[]
   name?: Prisma.StringNullableFilter<"Clubs"> | string | null
-  club_photo_url?: Prisma.StringNullableFilter<"Clubs"> | string | null
   capacity?: Prisma.IntNullableFilter<"Clubs"> | number | null
   activity_frequency?: Prisma.StringNullableFilter<"Clubs"> | string | null
   join_requirement?: Prisma.StringNullableFilter<"Clubs"> | string | null
   summary?: Prisma.StringNullableFilter<"Clubs"> | string | null
   level?: Prisma.EnumLevelNullableFilter<"Clubs"> | $Enums.Level | null
   age?: Prisma.EnumAgeNullableFilter<"Clubs"> | $Enums.Age | null
+  contact_number?: Prisma.StringNullableFilter<"Clubs"> | string | null
+  homepage_url?: Prisma.StringNullableFilter<"Clubs"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   region_id?: Prisma.BigIntFilter<"Clubs"> | bigint | number
@@ -343,18 +355,20 @@ export type ClubsWhereUniqueInput = Prisma.AtLeast<{
   notices?: Prisma.NoticeListRelationFilter
   joinRequests?: Prisma.JoinRequestListRelationFilter
   members?: Prisma.UserClubsListRelationFilter
+  photos?: Prisma.ClubPhotosListRelationFilter
 }, "id">
 
 export type ClubsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
-  club_photo_url?: Prisma.SortOrderInput | Prisma.SortOrder
   capacity?: Prisma.SortOrderInput | Prisma.SortOrder
   activity_frequency?: Prisma.SortOrderInput | Prisma.SortOrder
   join_requirement?: Prisma.SortOrderInput | Prisma.SortOrder
   summary?: Prisma.SortOrderInput | Prisma.SortOrder
   level?: Prisma.SortOrderInput | Prisma.SortOrder
   age?: Prisma.SortOrderInput | Prisma.SortOrder
+  contact_number?: Prisma.SortOrderInput | Prisma.SortOrder
+  homepage_url?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrderInput | Prisma.SortOrder
   updated_at?: Prisma.SortOrderInput | Prisma.SortOrder
   region_id?: Prisma.SortOrder
@@ -372,13 +386,14 @@ export type ClubsScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ClubsScalarWhereWithAggregatesInput | Prisma.ClubsScalarWhereWithAggregatesInput[]
   id?: Prisma.BigIntWithAggregatesFilter<"Clubs"> | bigint | number
   name?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
-  club_photo_url?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
   capacity?: Prisma.IntNullableWithAggregatesFilter<"Clubs"> | number | null
   activity_frequency?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
   join_requirement?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
   summary?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
   level?: Prisma.EnumLevelNullableWithAggregatesFilter<"Clubs"> | $Enums.Level | null
   age?: Prisma.EnumAgeNullableWithAggregatesFilter<"Clubs"> | $Enums.Age | null
+  contact_number?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
+  homepage_url?: Prisma.StringNullableWithAggregatesFilter<"Clubs"> | string | null
   created_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Clubs"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableWithAggregatesFilter<"Clubs"> | Date | string | null
   region_id?: Prisma.BigIntWithAggregatesFilter<"Clubs"> | bigint | number
@@ -388,13 +403,14 @@ export type ClubsScalarWhereWithAggregatesInput = {
 export type ClubsCreateInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region: Prisma.RegionCreateNestedOneWithoutClubsInput
@@ -402,18 +418,20 @@ export type ClubsCreateInput = {
   notices?: Prisma.NoticeCreateNestedManyWithoutClubInput
   joinRequests?: Prisma.JoinRequestCreateNestedManyWithoutClubInput
   members?: Prisma.UserClubsCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosCreateNestedManyWithoutClubInput
 }
 
 export type ClubsUncheckedCreateInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
@@ -421,18 +439,20 @@ export type ClubsUncheckedCreateInput = {
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutClubInput
   joinRequests?: Prisma.JoinRequestUncheckedCreateNestedManyWithoutClubInput
   members?: Prisma.UserClubsUncheckedCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosUncheckedCreateNestedManyWithoutClubInput
 }
 
 export type ClubsUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region?: Prisma.RegionUpdateOneRequiredWithoutClubsNestedInput
@@ -440,18 +460,20 @@ export type ClubsUpdateInput = {
   notices?: Prisma.NoticeUpdateManyWithoutClubNestedInput
   joinRequests?: Prisma.JoinRequestUpdateManyWithoutClubNestedInput
   members?: Prisma.UserClubsUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUpdateManyWithoutClubNestedInput
 }
 
 export type ClubsUncheckedUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -459,18 +481,20 @@ export type ClubsUncheckedUpdateInput = {
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutClubNestedInput
   joinRequests?: Prisma.JoinRequestUncheckedUpdateManyWithoutClubNestedInput
   members?: Prisma.UserClubsUncheckedUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUncheckedUpdateManyWithoutClubNestedInput
 }
 
 export type ClubsCreateManyInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
@@ -480,13 +504,14 @@ export type ClubsCreateManyInput = {
 export type ClubsUpdateManyMutationInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -494,13 +519,14 @@ export type ClubsUpdateManyMutationInput = {
 export type ClubsUncheckedUpdateManyInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -531,13 +557,14 @@ export type ClubsOrderByRelevanceInput = {
 export type ClubsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  club_photo_url?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   activity_frequency?: Prisma.SortOrder
   join_requirement?: Prisma.SortOrder
   summary?: Prisma.SortOrder
   level?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  contact_number?: Prisma.SortOrder
+  homepage_url?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   region_id?: Prisma.SortOrder
@@ -554,13 +581,14 @@ export type ClubsAvgOrderByAggregateInput = {
 export type ClubsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  club_photo_url?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   activity_frequency?: Prisma.SortOrder
   join_requirement?: Prisma.SortOrder
   summary?: Prisma.SortOrder
   level?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  contact_number?: Prisma.SortOrder
+  homepage_url?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   region_id?: Prisma.SortOrder
@@ -570,13 +598,14 @@ export type ClubsMaxOrderByAggregateInput = {
 export type ClubsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  club_photo_url?: Prisma.SortOrder
   capacity?: Prisma.SortOrder
   activity_frequency?: Prisma.SortOrder
   join_requirement?: Prisma.SortOrder
   summary?: Prisma.SortOrder
   level?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  contact_number?: Prisma.SortOrder
+  homepage_url?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   region_id?: Prisma.SortOrder
@@ -724,40 +753,58 @@ export type ClubsUpdateOneRequiredWithoutMembersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClubsUpdateToOneWithWhereWithoutMembersInput, Prisma.ClubsUpdateWithoutMembersInput>, Prisma.ClubsUncheckedUpdateWithoutMembersInput>
 }
 
+export type ClubsCreateNestedOneWithoutPhotosInput = {
+  create?: Prisma.XOR<Prisma.ClubsCreateWithoutPhotosInput, Prisma.ClubsUncheckedCreateWithoutPhotosInput>
+  connectOrCreate?: Prisma.ClubsCreateOrConnectWithoutPhotosInput
+  connect?: Prisma.ClubsWhereUniqueInput
+}
+
+export type ClubsUpdateOneRequiredWithoutPhotosNestedInput = {
+  create?: Prisma.XOR<Prisma.ClubsCreateWithoutPhotosInput, Prisma.ClubsUncheckedCreateWithoutPhotosInput>
+  connectOrCreate?: Prisma.ClubsCreateOrConnectWithoutPhotosInput
+  upsert?: Prisma.ClubsUpsertWithoutPhotosInput
+  connect?: Prisma.ClubsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClubsUpdateToOneWithWhereWithoutPhotosInput, Prisma.ClubsUpdateWithoutPhotosInput>, Prisma.ClubsUncheckedUpdateWithoutPhotosInput>
+}
+
 export type ClubsCreateWithoutJoinRequestsInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region: Prisma.RegionCreateNestedOneWithoutClubsInput
   sport_type: Prisma.SportTypeCreateNestedOneWithoutClubsInput
   notices?: Prisma.NoticeCreateNestedManyWithoutClubInput
   members?: Prisma.UserClubsCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosCreateNestedManyWithoutClubInput
 }
 
 export type ClubsUncheckedCreateWithoutJoinRequestsInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
   sport_type_id: bigint | number
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutClubInput
   members?: Prisma.UserClubsUncheckedCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosUncheckedCreateNestedManyWithoutClubInput
 }
 
 export type ClubsCreateOrConnectWithoutJoinRequestsInput = {
@@ -779,73 +826,81 @@ export type ClubsUpdateToOneWithWhereWithoutJoinRequestsInput = {
 export type ClubsUpdateWithoutJoinRequestsInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region?: Prisma.RegionUpdateOneRequiredWithoutClubsNestedInput
   sport_type?: Prisma.SportTypeUpdateOneRequiredWithoutClubsNestedInput
   notices?: Prisma.NoticeUpdateManyWithoutClubNestedInput
   members?: Prisma.UserClubsUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUpdateManyWithoutClubNestedInput
 }
 
 export type ClubsUncheckedUpdateWithoutJoinRequestsInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   sport_type_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutClubNestedInput
   members?: Prisma.UserClubsUncheckedUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUncheckedUpdateManyWithoutClubNestedInput
 }
 
 export type ClubsCreateWithoutSport_typeInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region: Prisma.RegionCreateNestedOneWithoutClubsInput
   notices?: Prisma.NoticeCreateNestedManyWithoutClubInput
   joinRequests?: Prisma.JoinRequestCreateNestedManyWithoutClubInput
   members?: Prisma.UserClubsCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosCreateNestedManyWithoutClubInput
 }
 
 export type ClubsUncheckedCreateWithoutSport_typeInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutClubInput
   joinRequests?: Prisma.JoinRequestUncheckedCreateNestedManyWithoutClubInput
   members?: Prisma.UserClubsUncheckedCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosUncheckedCreateNestedManyWithoutClubInput
 }
 
 export type ClubsCreateOrConnectWithoutSport_typeInput = {
@@ -880,13 +935,14 @@ export type ClubsScalarWhereInput = {
   NOT?: Prisma.ClubsScalarWhereInput | Prisma.ClubsScalarWhereInput[]
   id?: Prisma.BigIntFilter<"Clubs"> | bigint | number
   name?: Prisma.StringNullableFilter<"Clubs"> | string | null
-  club_photo_url?: Prisma.StringNullableFilter<"Clubs"> | string | null
   capacity?: Prisma.IntNullableFilter<"Clubs"> | number | null
   activity_frequency?: Prisma.StringNullableFilter<"Clubs"> | string | null
   join_requirement?: Prisma.StringNullableFilter<"Clubs"> | string | null
   summary?: Prisma.StringNullableFilter<"Clubs"> | string | null
   level?: Prisma.EnumLevelNullableFilter<"Clubs"> | $Enums.Level | null
   age?: Prisma.EnumAgeNullableFilter<"Clubs"> | $Enums.Age | null
+  contact_number?: Prisma.StringNullableFilter<"Clubs"> | string | null
+  homepage_url?: Prisma.StringNullableFilter<"Clubs"> | string | null
   created_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   updated_at?: Prisma.DateTimeNullableFilter<"Clubs"> | Date | string | null
   region_id?: Prisma.BigIntFilter<"Clubs"> | bigint | number
@@ -896,37 +952,41 @@ export type ClubsScalarWhereInput = {
 export type ClubsCreateWithoutRegionInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   sport_type: Prisma.SportTypeCreateNestedOneWithoutClubsInput
   notices?: Prisma.NoticeCreateNestedManyWithoutClubInput
   joinRequests?: Prisma.JoinRequestCreateNestedManyWithoutClubInput
   members?: Prisma.UserClubsCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosCreateNestedManyWithoutClubInput
 }
 
 export type ClubsUncheckedCreateWithoutRegionInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   sport_type_id: bigint | number
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutClubInput
   joinRequests?: Prisma.JoinRequestUncheckedCreateNestedManyWithoutClubInput
   members?: Prisma.UserClubsUncheckedCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosUncheckedCreateNestedManyWithoutClubInput
 }
 
 export type ClubsCreateOrConnectWithoutRegionInput = {
@@ -958,37 +1018,41 @@ export type ClubsUpdateManyWithWhereWithoutRegionInput = {
 export type ClubsCreateWithoutNoticesInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region: Prisma.RegionCreateNestedOneWithoutClubsInput
   sport_type: Prisma.SportTypeCreateNestedOneWithoutClubsInput
   joinRequests?: Prisma.JoinRequestCreateNestedManyWithoutClubInput
   members?: Prisma.UserClubsCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosCreateNestedManyWithoutClubInput
 }
 
 export type ClubsUncheckedCreateWithoutNoticesInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
   sport_type_id: bigint | number
   joinRequests?: Prisma.JoinRequestUncheckedCreateNestedManyWithoutClubInput
   members?: Prisma.UserClubsUncheckedCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosUncheckedCreateNestedManyWithoutClubInput
 }
 
 export type ClubsCreateOrConnectWithoutNoticesInput = {
@@ -1010,73 +1074,81 @@ export type ClubsUpdateToOneWithWhereWithoutNoticesInput = {
 export type ClubsUpdateWithoutNoticesInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region?: Prisma.RegionUpdateOneRequiredWithoutClubsNestedInput
   sport_type?: Prisma.SportTypeUpdateOneRequiredWithoutClubsNestedInput
   joinRequests?: Prisma.JoinRequestUpdateManyWithoutClubNestedInput
   members?: Prisma.UserClubsUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUpdateManyWithoutClubNestedInput
 }
 
 export type ClubsUncheckedUpdateWithoutNoticesInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   sport_type_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   joinRequests?: Prisma.JoinRequestUncheckedUpdateManyWithoutClubNestedInput
   members?: Prisma.UserClubsUncheckedUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUncheckedUpdateManyWithoutClubNestedInput
 }
 
 export type ClubsCreateWithoutMembersInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region: Prisma.RegionCreateNestedOneWithoutClubsInput
   sport_type: Prisma.SportTypeCreateNestedOneWithoutClubsInput
   notices?: Prisma.NoticeCreateNestedManyWithoutClubInput
   joinRequests?: Prisma.JoinRequestCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosCreateNestedManyWithoutClubInput
 }
 
 export type ClubsUncheckedCreateWithoutMembersInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
   sport_type_id: bigint | number
   notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutClubInput
   joinRequests?: Prisma.JoinRequestUncheckedCreateNestedManyWithoutClubInput
+  photos?: Prisma.ClubPhotosUncheckedCreateNestedManyWithoutClubInput
 }
 
 export type ClubsCreateOrConnectWithoutMembersInput = {
@@ -1098,49 +1170,150 @@ export type ClubsUpdateToOneWithWhereWithoutMembersInput = {
 export type ClubsUpdateWithoutMembersInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region?: Prisma.RegionUpdateOneRequiredWithoutClubsNestedInput
   sport_type?: Prisma.SportTypeUpdateOneRequiredWithoutClubsNestedInput
   notices?: Prisma.NoticeUpdateManyWithoutClubNestedInput
   joinRequests?: Prisma.JoinRequestUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUpdateManyWithoutClubNestedInput
 }
 
 export type ClubsUncheckedUpdateWithoutMembersInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   sport_type_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutClubNestedInput
   joinRequests?: Prisma.JoinRequestUncheckedUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUncheckedUpdateManyWithoutClubNestedInput
 }
 
-export type ClubsCreateManySport_typeInput = {
+export type ClubsCreateWithoutPhotosInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
+  created_at?: Date | string | null
+  updated_at?: Date | string | null
+  region: Prisma.RegionCreateNestedOneWithoutClubsInput
+  sport_type: Prisma.SportTypeCreateNestedOneWithoutClubsInput
+  notices?: Prisma.NoticeCreateNestedManyWithoutClubInput
+  joinRequests?: Prisma.JoinRequestCreateNestedManyWithoutClubInput
+  members?: Prisma.UserClubsCreateNestedManyWithoutClubInput
+}
+
+export type ClubsUncheckedCreateWithoutPhotosInput = {
+  id?: bigint | number
+  name?: string | null
+  capacity?: number | null
+  activity_frequency?: string | null
+  join_requirement?: string | null
+  summary?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
+  created_at?: Date | string | null
+  updated_at?: Date | string | null
+  region_id: bigint | number
+  sport_type_id: bigint | number
+  notices?: Prisma.NoticeUncheckedCreateNestedManyWithoutClubInput
+  joinRequests?: Prisma.JoinRequestUncheckedCreateNestedManyWithoutClubInput
+  members?: Prisma.UserClubsUncheckedCreateNestedManyWithoutClubInput
+}
+
+export type ClubsCreateOrConnectWithoutPhotosInput = {
+  where: Prisma.ClubsWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClubsCreateWithoutPhotosInput, Prisma.ClubsUncheckedCreateWithoutPhotosInput>
+}
+
+export type ClubsUpsertWithoutPhotosInput = {
+  update: Prisma.XOR<Prisma.ClubsUpdateWithoutPhotosInput, Prisma.ClubsUncheckedUpdateWithoutPhotosInput>
+  create: Prisma.XOR<Prisma.ClubsCreateWithoutPhotosInput, Prisma.ClubsUncheckedCreateWithoutPhotosInput>
+  where?: Prisma.ClubsWhereInput
+}
+
+export type ClubsUpdateToOneWithWhereWithoutPhotosInput = {
+  where?: Prisma.ClubsWhereInput
+  data: Prisma.XOR<Prisma.ClubsUpdateWithoutPhotosInput, Prisma.ClubsUncheckedUpdateWithoutPhotosInput>
+}
+
+export type ClubsUpdateWithoutPhotosInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  region?: Prisma.RegionUpdateOneRequiredWithoutClubsNestedInput
+  sport_type?: Prisma.SportTypeUpdateOneRequiredWithoutClubsNestedInput
+  notices?: Prisma.NoticeUpdateManyWithoutClubNestedInput
+  joinRequests?: Prisma.JoinRequestUpdateManyWithoutClubNestedInput
+  members?: Prisma.UserClubsUpdateManyWithoutClubNestedInput
+}
+
+export type ClubsUncheckedUpdateWithoutPhotosInput = {
+  id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
+  age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  sport_type_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  notices?: Prisma.NoticeUncheckedUpdateManyWithoutClubNestedInput
+  joinRequests?: Prisma.JoinRequestUncheckedUpdateManyWithoutClubNestedInput
+  members?: Prisma.UserClubsUncheckedUpdateManyWithoutClubNestedInput
+}
+
+export type ClubsCreateManySport_typeInput = {
+  id?: bigint | number
+  name?: string | null
+  capacity?: number | null
+  activity_frequency?: string | null
+  join_requirement?: string | null
+  summary?: string | null
+  level?: $Enums.Level | null
+  age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   region_id: bigint | number
@@ -1149,49 +1322,54 @@ export type ClubsCreateManySport_typeInput = {
 export type ClubsUpdateWithoutSport_typeInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region?: Prisma.RegionUpdateOneRequiredWithoutClubsNestedInput
   notices?: Prisma.NoticeUpdateManyWithoutClubNestedInput
   joinRequests?: Prisma.JoinRequestUpdateManyWithoutClubNestedInput
   members?: Prisma.UserClubsUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUpdateManyWithoutClubNestedInput
 }
 
 export type ClubsUncheckedUpdateWithoutSport_typeInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutClubNestedInput
   joinRequests?: Prisma.JoinRequestUncheckedUpdateManyWithoutClubNestedInput
   members?: Prisma.UserClubsUncheckedUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUncheckedUpdateManyWithoutClubNestedInput
 }
 
 export type ClubsUncheckedUpdateManyWithoutSport_typeInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   region_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -1200,13 +1378,14 @@ export type ClubsUncheckedUpdateManyWithoutSport_typeInput = {
 export type ClubsCreateManyRegionInput = {
   id?: bigint | number
   name?: string | null
-  club_photo_url?: string | null
   capacity?: number | null
   activity_frequency?: string | null
   join_requirement?: string | null
   summary?: string | null
   level?: $Enums.Level | null
   age?: $Enums.Age | null
+  contact_number?: string | null
+  homepage_url?: string | null
   created_at?: Date | string | null
   updated_at?: Date | string | null
   sport_type_id: bigint | number
@@ -1215,49 +1394,54 @@ export type ClubsCreateManyRegionInput = {
 export type ClubsUpdateWithoutRegionInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sport_type?: Prisma.SportTypeUpdateOneRequiredWithoutClubsNestedInput
   notices?: Prisma.NoticeUpdateManyWithoutClubNestedInput
   joinRequests?: Prisma.JoinRequestUpdateManyWithoutClubNestedInput
   members?: Prisma.UserClubsUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUpdateManyWithoutClubNestedInput
 }
 
 export type ClubsUncheckedUpdateWithoutRegionInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sport_type_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   notices?: Prisma.NoticeUncheckedUpdateManyWithoutClubNestedInput
   joinRequests?: Prisma.JoinRequestUncheckedUpdateManyWithoutClubNestedInput
   members?: Prisma.UserClubsUncheckedUpdateManyWithoutClubNestedInput
+  photos?: Prisma.ClubPhotosUncheckedUpdateManyWithoutClubNestedInput
 }
 
 export type ClubsUncheckedUpdateManyWithoutRegionInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  club_photo_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   capacity?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   activity_frequency?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   join_requirement?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   level?: Prisma.NullableEnumLevelFieldUpdateOperationsInput | $Enums.Level | null
   age?: Prisma.NullableEnumAgeFieldUpdateOperationsInput | $Enums.Age | null
+  contact_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  homepage_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   updated_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sport_type_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
@@ -1272,12 +1456,14 @@ export type ClubsCountOutputType = {
   notices: number
   joinRequests: number
   members: number
+  photos: number
 }
 
 export type ClubsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   notices?: boolean | ClubsCountOutputTypeCountNoticesArgs
   joinRequests?: boolean | ClubsCountOutputTypeCountJoinRequestsArgs
   members?: boolean | ClubsCountOutputTypeCountMembersArgs
+  photos?: boolean | ClubsCountOutputTypeCountPhotosArgs
 }
 
 /**
@@ -1311,17 +1497,25 @@ export type ClubsCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.UserClubsWhereInput
 }
 
+/**
+ * ClubsCountOutputType without action
+ */
+export type ClubsCountOutputTypeCountPhotosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClubPhotosWhereInput
+}
+
 
 export type ClubsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  club_photo_url?: boolean
   capacity?: boolean
   activity_frequency?: boolean
   join_requirement?: boolean
   summary?: boolean
   level?: boolean
   age?: boolean
+  contact_number?: boolean
+  homepage_url?: boolean
   created_at?: boolean
   updated_at?: boolean
   region_id?: boolean
@@ -1331,6 +1525,7 @@ export type ClubsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   notices?: boolean | Prisma.Clubs$noticesArgs<ExtArgs>
   joinRequests?: boolean | Prisma.Clubs$joinRequestsArgs<ExtArgs>
   members?: boolean | Prisma.Clubs$membersArgs<ExtArgs>
+  photos?: boolean | Prisma.Clubs$photosArgs<ExtArgs>
   _count?: boolean | Prisma.ClubsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["clubs"]>
 
@@ -1339,26 +1534,28 @@ export type ClubsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type ClubsSelectScalar = {
   id?: boolean
   name?: boolean
-  club_photo_url?: boolean
   capacity?: boolean
   activity_frequency?: boolean
   join_requirement?: boolean
   summary?: boolean
   level?: boolean
   age?: boolean
+  contact_number?: boolean
+  homepage_url?: boolean
   created_at?: boolean
   updated_at?: boolean
   region_id?: boolean
   sport_type_id?: boolean
 }
 
-export type ClubsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "club_photo_url" | "capacity" | "activity_frequency" | "join_requirement" | "summary" | "level" | "age" | "created_at" | "updated_at" | "region_id" | "sport_type_id", ExtArgs["result"]["clubs"]>
+export type ClubsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "capacity" | "activity_frequency" | "join_requirement" | "summary" | "level" | "age" | "contact_number" | "homepage_url" | "created_at" | "updated_at" | "region_id" | "sport_type_id", ExtArgs["result"]["clubs"]>
 export type ClubsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   region?: boolean | Prisma.RegionDefaultArgs<ExtArgs>
   sport_type?: boolean | Prisma.SportTypeDefaultArgs<ExtArgs>
   notices?: boolean | Prisma.Clubs$noticesArgs<ExtArgs>
   joinRequests?: boolean | Prisma.Clubs$joinRequestsArgs<ExtArgs>
   members?: boolean | Prisma.Clubs$membersArgs<ExtArgs>
+  photos?: boolean | Prisma.Clubs$photosArgs<ExtArgs>
   _count?: boolean | Prisma.ClubsCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1370,17 +1567,19 @@ export type $ClubsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     notices: Prisma.$NoticePayload<ExtArgs>[]
     joinRequests: Prisma.$JoinRequestPayload<ExtArgs>[]
     members: Prisma.$UserClubsPayload<ExtArgs>[]
+    photos: Prisma.$ClubPhotosPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
     name: string | null
-    club_photo_url: string | null
     capacity: number | null
     activity_frequency: string | null
     join_requirement: string | null
     summary: string | null
     level: $Enums.Level | null
     age: $Enums.Age | null
+    contact_number: string | null
+    homepage_url: string | null
     created_at: Date | null
     updated_at: Date | null
     region_id: bigint
@@ -1730,6 +1929,7 @@ export interface Prisma__ClubsClient<T, Null = never, ExtArgs extends runtime.Ty
   notices<T extends Prisma.Clubs$noticesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Clubs$noticesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NoticePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   joinRequests<T extends Prisma.Clubs$joinRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Clubs$joinRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JoinRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   members<T extends Prisma.Clubs$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Clubs$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserClubsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  photos<T extends Prisma.Clubs$photosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Clubs$photosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClubPhotosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1761,13 +1961,14 @@ export interface Prisma__ClubsClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface ClubsFieldRefs {
   readonly id: Prisma.FieldRef<"Clubs", 'BigInt'>
   readonly name: Prisma.FieldRef<"Clubs", 'String'>
-  readonly club_photo_url: Prisma.FieldRef<"Clubs", 'String'>
   readonly capacity: Prisma.FieldRef<"Clubs", 'Int'>
   readonly activity_frequency: Prisma.FieldRef<"Clubs", 'String'>
   readonly join_requirement: Prisma.FieldRef<"Clubs", 'String'>
   readonly summary: Prisma.FieldRef<"Clubs", 'String'>
   readonly level: Prisma.FieldRef<"Clubs", 'Level'>
   readonly age: Prisma.FieldRef<"Clubs", 'Age'>
+  readonly contact_number: Prisma.FieldRef<"Clubs", 'String'>
+  readonly homepage_url: Prisma.FieldRef<"Clubs", 'String'>
   readonly created_at: Prisma.FieldRef<"Clubs", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"Clubs", 'DateTime'>
   readonly region_id: Prisma.FieldRef<"Clubs", 'BigInt'>
@@ -2184,6 +2385,30 @@ export type Clubs$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.UserClubsScalarFieldEnum | Prisma.UserClubsScalarFieldEnum[]
+}
+
+/**
+ * Clubs.photos
+ */
+export type Clubs$photosArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClubPhotos
+   */
+  select?: Prisma.ClubPhotosSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ClubPhotos
+   */
+  omit?: Prisma.ClubPhotosOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClubPhotosInclude<ExtArgs> | null
+  where?: Prisma.ClubPhotosWhereInput
+  orderBy?: Prisma.ClubPhotosOrderByWithRelationInput | Prisma.ClubPhotosOrderByWithRelationInput[]
+  cursor?: Prisma.ClubPhotosWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClubPhotosScalarFieldEnum | Prisma.ClubPhotosScalarFieldEnum[]
 }
 
 /**

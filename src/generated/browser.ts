@@ -63,6 +63,11 @@ export type Users = Prisma.UsersModel
  */
 export type UserClubs = Prisma.UserClubsModel
 /**
+ * Model ClubPhotos
+ * 
+ */
+export type ClubPhotos = Prisma.ClubPhotosModel
+/**
  * Model ReviewPhotos
  * 
  */

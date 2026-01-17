@@ -97,8 +97,9 @@ model SportType {
 }
 
 model Region {
-  id          BigInt  @id @default(autoincrement())
-  region_name String? @db.VarChar(10)
+  id       BigInt  @id @default(autoincrement())
+  city     String? @db.VarChar(10)
+  district String? @db.VarChar(10)
 
   @@map("region")
 
@@ -110,13 +111,14 @@ model Region {
 model Clubs {
   id                 BigInt   @id @default(autoincrement())
   name               String?  @db.VarChar(20)
-  club_photo_url     String?  @db.VarChar(255)
   capacity           Int?
   activity_frequency String?  @db.VarChar(20)
   join_requirement   String?  @db.VarChar(30)
   summary            String?  @db.VarChar(50)
   level              Level?
   age                Age?
+  contact_number     String?  @db.VarChar(15)
+  homepage_url       String?  @db.VarChar(255)
   created_at         DateTime? @default(now())
   updated_at         DateTime? @updatedAt
   region_id          BigInt
@@ -130,6 +132,7 @@ model Clubs {
   notices      Notice[]
   joinRequests JoinRequest[]
   members      UserClubs[]
+  photos       ClubPhotos[]
 }
 
 model Notice {
@@ -188,6 +191,17 @@ model UserClubs {
 
   club Clubs @relation(fields: [club_id], references: [id])
   user Users @relation(fields: [user_id], references: [id])
+}
+
+model ClubPhotos {
+  id             BigInt   @id @default(autoincrement())
+  club_id        BigInt
+  club_photo_url String?  @db.VarChar(255)
+  uploaded_at    DateTime? @default(now()) @db.DateTime(6)
+
+  @@map("club_photos")
+
+  club Clubs @relation(fields: [club_id], references: [id])
 }
 
 model ReviewPhotos {

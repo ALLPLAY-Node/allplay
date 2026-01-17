@@ -36,17 +36,20 @@ export type RegionSumAggregateOutputType = {
 
 export type RegionMinAggregateOutputType = {
   id: bigint | null
-  region_name: string | null
+  city: string | null
+  district: string | null
 }
 
 export type RegionMaxAggregateOutputType = {
   id: bigint | null
-  region_name: string | null
+  city: string | null
+  district: string | null
 }
 
 export type RegionCountAggregateOutputType = {
   id: number
-  region_name: number
+  city: number
+  district: number
   _all: number
 }
 
@@ -61,17 +64,20 @@ export type RegionSumAggregateInputType = {
 
 export type RegionMinAggregateInputType = {
   id?: true
-  region_name?: true
+  city?: true
+  district?: true
 }
 
 export type RegionMaxAggregateInputType = {
   id?: true
-  region_name?: true
+  city?: true
+  district?: true
 }
 
 export type RegionCountAggregateInputType = {
   id?: true
-  region_name?: true
+  city?: true
+  district?: true
   _all?: true
 }
 
@@ -163,7 +169,8 @@ export type RegionGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type RegionGroupByOutputType = {
   id: bigint
-  region_name: string | null
+  city: string | null
+  district: string | null
   _count: RegionCountAggregateOutputType | null
   _avg: RegionAvgAggregateOutputType | null
   _sum: RegionSumAggregateOutputType | null
@@ -191,7 +198,8 @@ export type RegionWhereInput = {
   OR?: Prisma.RegionWhereInput[]
   NOT?: Prisma.RegionWhereInput | Prisma.RegionWhereInput[]
   id?: Prisma.BigIntFilter<"Region"> | bigint | number
-  region_name?: Prisma.StringNullableFilter<"Region"> | string | null
+  city?: Prisma.StringNullableFilter<"Region"> | string | null
+  district?: Prisma.StringNullableFilter<"Region"> | string | null
   users?: Prisma.UsersListRelationFilter
   clubs?: Prisma.ClubsListRelationFilter
   facilities?: Prisma.SportFacilitiesListRelationFilter
@@ -199,7 +207,8 @@ export type RegionWhereInput = {
 
 export type RegionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  region_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  district?: Prisma.SortOrderInput | Prisma.SortOrder
   users?: Prisma.UsersOrderByRelationAggregateInput
   clubs?: Prisma.ClubsOrderByRelationAggregateInput
   facilities?: Prisma.SportFacilitiesOrderByRelationAggregateInput
@@ -211,7 +220,8 @@ export type RegionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RegionWhereInput | Prisma.RegionWhereInput[]
   OR?: Prisma.RegionWhereInput[]
   NOT?: Prisma.RegionWhereInput | Prisma.RegionWhereInput[]
-  region_name?: Prisma.StringNullableFilter<"Region"> | string | null
+  city?: Prisma.StringNullableFilter<"Region"> | string | null
+  district?: Prisma.StringNullableFilter<"Region"> | string | null
   users?: Prisma.UsersListRelationFilter
   clubs?: Prisma.ClubsListRelationFilter
   facilities?: Prisma.SportFacilitiesListRelationFilter
@@ -219,7 +229,8 @@ export type RegionWhereUniqueInput = Prisma.AtLeast<{
 
 export type RegionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  region_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  city?: Prisma.SortOrderInput | Prisma.SortOrder
+  district?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.RegionCountOrderByAggregateInput
   _avg?: Prisma.RegionAvgOrderByAggregateInput
   _max?: Prisma.RegionMaxOrderByAggregateInput
@@ -232,12 +243,14 @@ export type RegionScalarWhereWithAggregatesInput = {
   OR?: Prisma.RegionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RegionScalarWhereWithAggregatesInput | Prisma.RegionScalarWhereWithAggregatesInput[]
   id?: Prisma.BigIntWithAggregatesFilter<"Region"> | bigint | number
-  region_name?: Prisma.StringNullableWithAggregatesFilter<"Region"> | string | null
+  city?: Prisma.StringNullableWithAggregatesFilter<"Region"> | string | null
+  district?: Prisma.StringNullableWithAggregatesFilter<"Region"> | string | null
 }
 
 export type RegionCreateInput = {
   id?: bigint | number
-  region_name?: string | null
+  city?: string | null
+  district?: string | null
   users?: Prisma.UsersCreateNestedManyWithoutRegionInput
   clubs?: Prisma.ClubsCreateNestedManyWithoutRegionInput
   facilities?: Prisma.SportFacilitiesCreateNestedManyWithoutRegionInput
@@ -245,7 +258,8 @@ export type RegionCreateInput = {
 
 export type RegionUncheckedCreateInput = {
   id?: bigint | number
-  region_name?: string | null
+  city?: string | null
+  district?: string | null
   users?: Prisma.UsersUncheckedCreateNestedManyWithoutRegionInput
   clubs?: Prisma.ClubsUncheckedCreateNestedManyWithoutRegionInput
   facilities?: Prisma.SportFacilitiesUncheckedCreateNestedManyWithoutRegionInput
@@ -253,7 +267,8 @@ export type RegionUncheckedCreateInput = {
 
 export type RegionUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  region_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   users?: Prisma.UsersUpdateManyWithoutRegionNestedInput
   clubs?: Prisma.ClubsUpdateManyWithoutRegionNestedInput
   facilities?: Prisma.SportFacilitiesUpdateManyWithoutRegionNestedInput
@@ -261,7 +276,8 @@ export type RegionUpdateInput = {
 
 export type RegionUncheckedUpdateInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  region_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   users?: Prisma.UsersUncheckedUpdateManyWithoutRegionNestedInput
   clubs?: Prisma.ClubsUncheckedUpdateManyWithoutRegionNestedInput
   facilities?: Prisma.SportFacilitiesUncheckedUpdateManyWithoutRegionNestedInput
@@ -269,17 +285,20 @@ export type RegionUncheckedUpdateInput = {
 
 export type RegionCreateManyInput = {
   id?: bigint | number
-  region_name?: string | null
+  city?: string | null
+  district?: string | null
 }
 
 export type RegionUpdateManyMutationInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  region_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RegionUncheckedUpdateManyInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  region_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type RegionScalarRelationFilter = {
@@ -295,7 +314,8 @@ export type RegionOrderByRelevanceInput = {
 
 export type RegionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  region_name?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  district?: Prisma.SortOrder
 }
 
 export type RegionAvgOrderByAggregateInput = {
@@ -304,12 +324,14 @@ export type RegionAvgOrderByAggregateInput = {
 
 export type RegionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  region_name?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  district?: Prisma.SortOrder
 }
 
 export type RegionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  region_name?: Prisma.SortOrder
+  city?: Prisma.SortOrder
+  district?: Prisma.SortOrder
 }
 
 export type RegionSumOrderByAggregateInput = {
@@ -360,14 +382,16 @@ export type RegionUpdateOneRequiredWithoutUsersNestedInput = {
 
 export type RegionCreateWithoutFacilitiesInput = {
   id?: bigint | number
-  region_name?: string | null
+  city?: string | null
+  district?: string | null
   users?: Prisma.UsersCreateNestedManyWithoutRegionInput
   clubs?: Prisma.ClubsCreateNestedManyWithoutRegionInput
 }
 
 export type RegionUncheckedCreateWithoutFacilitiesInput = {
   id?: bigint | number
-  region_name?: string | null
+  city?: string | null
+  district?: string | null
   users?: Prisma.UsersUncheckedCreateNestedManyWithoutRegionInput
   clubs?: Prisma.ClubsUncheckedCreateNestedManyWithoutRegionInput
 }
@@ -390,28 +414,32 @@ export type RegionUpdateToOneWithWhereWithoutFacilitiesInput = {
 
 export type RegionUpdateWithoutFacilitiesInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  region_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   users?: Prisma.UsersUpdateManyWithoutRegionNestedInput
   clubs?: Prisma.ClubsUpdateManyWithoutRegionNestedInput
 }
 
 export type RegionUncheckedUpdateWithoutFacilitiesInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  region_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   users?: Prisma.UsersUncheckedUpdateManyWithoutRegionNestedInput
   clubs?: Prisma.ClubsUncheckedUpdateManyWithoutRegionNestedInput
 }
 
 export type RegionCreateWithoutClubsInput = {
   id?: bigint | number
-  region_name?: string | null
+  city?: string | null
+  district?: string | null
   users?: Prisma.UsersCreateNestedManyWithoutRegionInput
   facilities?: Prisma.SportFacilitiesCreateNestedManyWithoutRegionInput
 }
 
 export type RegionUncheckedCreateWithoutClubsInput = {
   id?: bigint | number
-  region_name?: string | null
+  city?: string | null
+  district?: string | null
   users?: Prisma.UsersUncheckedCreateNestedManyWithoutRegionInput
   facilities?: Prisma.SportFacilitiesUncheckedCreateNestedManyWithoutRegionInput
 }
@@ -434,28 +462,32 @@ export type RegionUpdateToOneWithWhereWithoutClubsInput = {
 
 export type RegionUpdateWithoutClubsInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  region_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   users?: Prisma.UsersUpdateManyWithoutRegionNestedInput
   facilities?: Prisma.SportFacilitiesUpdateManyWithoutRegionNestedInput
 }
 
 export type RegionUncheckedUpdateWithoutClubsInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  region_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   users?: Prisma.UsersUncheckedUpdateManyWithoutRegionNestedInput
   facilities?: Prisma.SportFacilitiesUncheckedUpdateManyWithoutRegionNestedInput
 }
 
 export type RegionCreateWithoutUsersInput = {
   id?: bigint | number
-  region_name?: string | null
+  city?: string | null
+  district?: string | null
   clubs?: Prisma.ClubsCreateNestedManyWithoutRegionInput
   facilities?: Prisma.SportFacilitiesCreateNestedManyWithoutRegionInput
 }
 
 export type RegionUncheckedCreateWithoutUsersInput = {
   id?: bigint | number
-  region_name?: string | null
+  city?: string | null
+  district?: string | null
   clubs?: Prisma.ClubsUncheckedCreateNestedManyWithoutRegionInput
   facilities?: Prisma.SportFacilitiesUncheckedCreateNestedManyWithoutRegionInput
 }
@@ -478,14 +510,16 @@ export type RegionUpdateToOneWithWhereWithoutUsersInput = {
 
 export type RegionUpdateWithoutUsersInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  region_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubs?: Prisma.ClubsUpdateManyWithoutRegionNestedInput
   facilities?: Prisma.SportFacilitiesUpdateManyWithoutRegionNestedInput
 }
 
 export type RegionUncheckedUpdateWithoutUsersInput = {
   id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  region_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  district?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clubs?: Prisma.ClubsUncheckedUpdateManyWithoutRegionNestedInput
   facilities?: Prisma.SportFacilitiesUncheckedUpdateManyWithoutRegionNestedInput
 }
@@ -541,7 +575,8 @@ export type RegionCountOutputTypeCountFacilitiesArgs<ExtArgs extends runtime.Typ
 
 export type RegionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  region_name?: boolean
+  city?: boolean
+  district?: boolean
   users?: boolean | Prisma.Region$usersArgs<ExtArgs>
   clubs?: boolean | Prisma.Region$clubsArgs<ExtArgs>
   facilities?: boolean | Prisma.Region$facilitiesArgs<ExtArgs>
@@ -552,10 +587,11 @@ export type RegionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 
 export type RegionSelectScalar = {
   id?: boolean
-  region_name?: boolean
+  city?: boolean
+  district?: boolean
 }
 
-export type RegionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "region_name", ExtArgs["result"]["region"]>
+export type RegionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "city" | "district", ExtArgs["result"]["region"]>
 export type RegionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | Prisma.Region$usersArgs<ExtArgs>
   clubs?: boolean | Prisma.Region$clubsArgs<ExtArgs>
@@ -572,7 +608,8 @@ export type $RegionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: bigint
-    region_name: string | null
+    city: string | null
+    district: string | null
   }, ExtArgs["result"]["region"]>
   composites: {}
 }
@@ -946,7 +983,8 @@ export interface Prisma__RegionClient<T, Null = never, ExtArgs extends runtime.T
  */
 export interface RegionFieldRefs {
   readonly id: Prisma.FieldRef<"Region", 'BigInt'>
-  readonly region_name: Prisma.FieldRef<"Region", 'String'>
+  readonly city: Prisma.FieldRef<"Region", 'String'>
+  readonly district: Prisma.FieldRef<"Region", 'String'>
 }
     
 

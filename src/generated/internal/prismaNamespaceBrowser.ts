@@ -60,6 +60,7 @@ export const ModelName = {
   Notice: 'Notice',
   Users: 'Users',
   UserClubs: 'UserClubs',
+  ClubPhotos: 'ClubPhotos',
   ReviewPhotos: 'ReviewPhotos'
 } as const
 
@@ -133,7 +134,8 @@ export type SportTypeScalarFieldEnum = (typeof SportTypeScalarFieldEnum)[keyof t
 
 export const RegionScalarFieldEnum = {
   id: 'id',
-  region_name: 'region_name'
+  city: 'city',
+  district: 'district'
 } as const
 
 export type RegionScalarFieldEnum = (typeof RegionScalarFieldEnum)[keyof typeof RegionScalarFieldEnum]
@@ -142,13 +144,14 @@ export type RegionScalarFieldEnum = (typeof RegionScalarFieldEnum)[keyof typeof 
 export const ClubsScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  club_photo_url: 'club_photo_url',
   capacity: 'capacity',
   activity_frequency: 'activity_frequency',
   join_requirement: 'join_requirement',
   summary: 'summary',
   level: 'level',
   age: 'age',
+  contact_number: 'contact_number',
+  homepage_url: 'homepage_url',
   created_at: 'created_at',
   updated_at: 'updated_at',
   region_id: 'region_id',
@@ -203,6 +206,16 @@ export const UserClubsScalarFieldEnum = {
 } as const
 
 export type UserClubsScalarFieldEnum = (typeof UserClubsScalarFieldEnum)[keyof typeof UserClubsScalarFieldEnum]
+
+
+export const ClubPhotosScalarFieldEnum = {
+  id: 'id',
+  club_id: 'club_id',
+  club_photo_url: 'club_photo_url',
+  uploaded_at: 'uploaded_at'
+} as const
+
+export type ClubPhotosScalarFieldEnum = (typeof ClubPhotosScalarFieldEnum)[keyof typeof ClubPhotosScalarFieldEnum]
 
 
 export const ReviewPhotosScalarFieldEnum = {
@@ -261,7 +274,8 @@ export type SportTypeOrderByRelevanceFieldEnum = (typeof SportTypeOrderByRelevan
 
 
 export const RegionOrderByRelevanceFieldEnum = {
-  region_name: 'region_name'
+  city: 'city',
+  district: 'district'
 } as const
 
 export type RegionOrderByRelevanceFieldEnum = (typeof RegionOrderByRelevanceFieldEnum)[keyof typeof RegionOrderByRelevanceFieldEnum]
@@ -269,10 +283,11 @@ export type RegionOrderByRelevanceFieldEnum = (typeof RegionOrderByRelevanceFiel
 
 export const ClubsOrderByRelevanceFieldEnum = {
   name: 'name',
-  club_photo_url: 'club_photo_url',
   activity_frequency: 'activity_frequency',
   join_requirement: 'join_requirement',
-  summary: 'summary'
+  summary: 'summary',
+  contact_number: 'contact_number',
+  homepage_url: 'homepage_url'
 } as const
 
 export type ClubsOrderByRelevanceFieldEnum = (typeof ClubsOrderByRelevanceFieldEnum)[keyof typeof ClubsOrderByRelevanceFieldEnum]
@@ -297,6 +312,13 @@ export const UsersOrderByRelevanceFieldEnum = {
 } as const
 
 export type UsersOrderByRelevanceFieldEnum = (typeof UsersOrderByRelevanceFieldEnum)[keyof typeof UsersOrderByRelevanceFieldEnum]
+
+
+export const ClubPhotosOrderByRelevanceFieldEnum = {
+  club_photo_url: 'club_photo_url'
+} as const
+
+export type ClubPhotosOrderByRelevanceFieldEnum = (typeof ClubPhotosOrderByRelevanceFieldEnum)[keyof typeof ClubPhotosOrderByRelevanceFieldEnum]
 
 
 export const ReviewPhotosOrderByRelevanceFieldEnum = {
