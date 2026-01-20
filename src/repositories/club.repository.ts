@@ -17,23 +17,6 @@ interface clubRequest {
   hompageUrl?: string;
 }
 
-export const findRegionByCityAndDistrict = async (
-  city: string,
-  district: string,
-) => {
-  const region = await prisma.region.findFirst({
-    where: { city, district },
-  });
-  return region;
-};
-
-export const findSportByName = async (sportType: string) => {
-  const sport = await prisma.sportType.findFirst({
-    where: { sport_type: sportType },
-  });
-  return sport;
-};
-
 export const addClub = async (
   clubData: clubRequest,
   userId: number,

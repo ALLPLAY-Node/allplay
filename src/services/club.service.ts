@@ -1,8 +1,6 @@
-import {
-  addClub,
-  findRegionByCityAndDistrict,
-  findSportByName,
-} from "../repositories/club.repository.js";
+import { addClub } from "../repositories/club.repository.js";
+import { findRegionByCityAndDistrict } from "../repositories/region.repository.js";
+import { findSportByName } from "../repositories/sport-type.repository.js";
 import { Age, Level } from "@prisma/client";
 
 interface clubRequest {
