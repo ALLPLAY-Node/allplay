@@ -63,3 +63,14 @@ export class joinRequestNotFoundError extends Error {
     this.data = data;
   }
 }
+
+export class alreadyClubLeaderError extends Error {
+  errorCode = "CLUB_ALREADY_LEADER";
+  reason: string;
+  data: any;
+  constructor(reason: string, data: any) {
+    super("Already club leader");
+    this.reason = reason;
+    this.data = data;
+  }
+}

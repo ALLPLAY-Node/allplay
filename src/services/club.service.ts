@@ -16,6 +16,7 @@ import {
   ClubNotAuthorizedError,
   AlreadyAppliedError,
   joinRequestNotFoundError,
+  alreadyClubLeaderError,
 } from "../errors.js";
 
 interface clubRequest {
@@ -84,6 +85,13 @@ export const clubJoin = async (userId: number, clubId: number) => {
   const isApply = await isApplied(userId, clubId);
   if (isApply) {
     throw new AlreadyAppliedError("already applied", { userId, clubId });
+  }
+  const clubLeader = await getClubLeaderByClubId(BigInt(clubId));
+  if (!clubLeader) {
+    throw new ClubLeaderNotFoundError("Club leader not found", {});
+  }
+  if (clubLeader.user_id === BigInt(userId)) {
+    throw new alreadyClubLeaderError("already club leader", {});
   }
   const joinRequest = await joinClub(userId, clubId);
   return joinRequest;

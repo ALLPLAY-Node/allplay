@@ -58,4 +58,14 @@ export class joinRequestNotFoundError extends Error {
         this.data = data;
     }
 }
+export class alreadyClubLeaderError extends Error {
+    errorCode = "CLUB_ALREADY_LEADER";
+    reason;
+    data;
+    constructor(reason, data) {
+        super("Already club leader");
+        this.reason = reason;
+        this.data = data;
+    }
+}
 //# sourceMappingURL=errors.js.map
