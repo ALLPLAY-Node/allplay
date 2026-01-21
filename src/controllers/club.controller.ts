@@ -4,8 +4,9 @@ import {
   clubUpdate,
   clubJoin,
   getJoinRequests,
+  approveJoinRequest,
 } from "../services/club.service.js";
-import { clubDtos } from "../dtos/club.dto.js";
+import { clubDtos, joinRequestDtos } from "../dtos/club.dto.js";
 import { StatusCodes } from "http-status-codes";
 
 export const handleClubAdd = async (
@@ -63,7 +64,25 @@ export const handleGetJoinRequests = async (
 ): Promise<void> => {
   const userId = (req as any).user.id;
   const items = await getJoinRequests(userId, Number(req.params.clubId));
-  res.status(StatusCodes.OK).success("가입 신청 목록", {
-    items,
-  });
+  res.status(StatusCodes.OK).success("가입 신청 목록", joinRequestDtos(items));
+};
+
+export const handleApproveJoinRequest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  const userId = (req as any).user.id;
+  const status = req.body.status;
+  const joinRequest = await approveJoinRequest(
+    Number(req.params.requestId),
+    userId,
+    Number(req.params.clubId),
+    status,
+  );
+  if (joinRequest && status === "APPROVED") {
+    res.status(StatusCodes.OK).success("가입 신청 승인", {});
+  } else if (joinRequest && status === "REJECTED") {
+    res.status(StatusCodes.OK).success("가입 신청 거절", {});
+  }
 };

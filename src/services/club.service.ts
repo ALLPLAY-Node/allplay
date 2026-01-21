@@ -6,6 +6,7 @@ import {
   joinClub,
   isApplied,
   findJoinRequests,
+  joinRequestApprove,
 } from "../repositories/join-request.repository.js";
 import { Age, Level } from "@prisma/client";
 import {
@@ -98,4 +99,27 @@ export const getJoinRequests = async (userId: number, clubId: number) => {
 
   const joinRequests = await findJoinRequests(clubId);
   return joinRequests;
+};
+
+export const approveJoinRequest = async (
+  requestId: number,
+  userId: number,
+  clubId: number,
+  status: string,
+) => {
+  const clubLeader = await getClubLeaderByClubId(BigInt(clubId));
+  if (!clubLeader) {
+    throw new ClubLeaderNotFoundError("Club leader not found", {});
+  }
+  if (clubLeader.user_id !== BigInt(userId)) {
+    throw new ClubNotAuthorizedError("not authorized to update this club", {});
+  }
+
+  const data: boolean = await joinRequestApprove(
+    requestId,
+    clubId,
+    userId,
+    status,
+  );
+  return data;
 };

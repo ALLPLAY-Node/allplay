@@ -33,3 +33,16 @@ export const clubDtos = (data: clubRequest) => {
     hompageUrl: data.hompageUrl,
   };
 };
+
+export const joinRequestDtos = (data: any) => {
+  const items = [];
+  for (const item of data) {
+    items.push({
+      id: item.id,
+      clubId: item.club_id,
+      userId: item.user_id,
+      applicationDate: item.created_at,
+    });
+  }
+  return items;
+};

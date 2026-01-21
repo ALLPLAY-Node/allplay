@@ -29,4 +29,10 @@ export declare const clubDtos: (data: clubRequest) => {
     contact: string;
     hompageUrl: string;
 };
+export declare const joinRequestDtos: (data: any) => {
+    id: any;
+    clubId: any;
+    userId: any;
+    applicationDate: any;
+}[];
 //# sourceMappingURL=club.dto.d.ts.map

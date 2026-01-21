@@ -11,4 +11,5 @@ export declare const findJoinRequests: (clubId: number) => Promise<{
     club_id: bigint;
     user_id: bigint;
 }[]>;
+export declare const joinRequestApprove: (requestId: number, clubId: number, userId: number, status: string) => Promise<boolean>;
 //# sourceMappingURL=join-request.repository.d.ts.map
