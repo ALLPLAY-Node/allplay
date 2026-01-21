@@ -3,6 +3,7 @@ import { findRegionByCityAndDistrict } from "../repositories/region.repository.j
 import { findSportByName } from "../repositories/sport-type.repository.js";
 import { getClubLeaderByClubId, clubLeave, } from "../repositories/club-user.repository.js";
 import { joinClub, isApplied, findJoinRequests, joinRequestApprove, } from "../repositories/join-request.repository.js";
+import { addClubPhotos } from "../repositories/clubPhoto.repository.js";
 import { Age, Level } from "@prisma/client";
 import { RegionNotFoundError, SportNotFoundError, ClubLeaderNotFoundError, ClubNotAuthorizedError, AlreadyAppliedError, joinRequestNotFoundError, alreadyClubLeaderError, notClubUserError, } from "../errors.js";
 export const clubAdd = async (clubData, userId) => {
@@ -15,6 +16,9 @@ export const clubAdd = async (clubData, userId) => {
         throw new SportNotFoundError("Sport type not found", clubData);
     }
     const club = await addClub(clubData, userId, region.id, sport.id);
+    if (clubData.imageURL) {
+        await addClubPhotos(clubData.imageURL, club.id);
+    }
     return club;
 };
 export const clubUpdate = async (clubData, userId, clubId) => {

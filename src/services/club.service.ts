@@ -11,6 +11,7 @@ import {
   findJoinRequests,
   joinRequestApprove,
 } from "../repositories/join-request.repository.js";
+import { addClubPhotos } from "../repositories/clubPhoto.repository.js";
 import { Age, Level } from "@prisma/client";
 import {
   RegionNotFoundError,
@@ -52,6 +53,9 @@ export const clubAdd = async (clubData: clubRequest, userId: number) => {
     throw new SportNotFoundError("Sport type not found", clubData);
   }
   const club = await addClub(clubData, userId, region.id, sport.id);
+  if (clubData.imageURL) {
+    await addClubPhotos(clubData.imageURL, club.id);
+  }
   return club;
 };
 
