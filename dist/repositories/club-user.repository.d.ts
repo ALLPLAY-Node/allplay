@@ -6,4 +6,5 @@ export declare const getClubLeaderByClubId: (clubId: bigint) => Promise<{
     club_id: bigint;
     user_id: bigint;
 } | null>;
+export declare const clubLeave: (userId: bigint, clubId: bigint) => Promise<boolean>;
 //# sourceMappingURL=club-user.repository.d.ts.map

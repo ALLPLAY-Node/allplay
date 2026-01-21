@@ -8,3 +8,16 @@ export const getClubLeaderByClubId = async (clubId: bigint) => {
     },
   });
 };
+
+export const clubLeave = async (userId: bigint, clubId: bigint) => {
+  const data = await prisma.userClubs.deleteMany({
+    where: {
+      user_id: userId,
+      club_id: clubId,
+    },
+  });
+  if (data.count === 0) {
+    return false;
+  }
+  return true;
+};

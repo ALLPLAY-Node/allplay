@@ -5,6 +5,7 @@ import {
   clubJoin,
   getJoinRequests,
   approveJoinRequest,
+  leaveClub,
 } from "../services/club.service.js";
 import { clubDtos, joinRequestDtos } from "../dtos/club.dto.js";
 import { StatusCodes } from "http-status-codes";
@@ -85,4 +86,15 @@ export const handleApproveJoinRequest = async (
   } else if (joinRequest && status === "REJECTED") {
     res.status(StatusCodes.OK).success("가입 신청 거절", {});
   }
+};
+
+export const handleLeaveClub = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  const userId = (req as any).user.id;
+  const clubId = Number(req.params.clubId);
+  const data = await leaveClub(userId, clubId);
+  res.status(StatusCodes.OK).success("탈퇴 완료", {});
 };

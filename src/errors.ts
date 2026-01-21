@@ -74,3 +74,14 @@ export class alreadyClubLeaderError extends Error {
     this.data = data;
   }
 }
+
+export class notClubUserError extends Error {
+  errorCode = "CLUB_NOT_USER";
+  reason: string;
+  data: any;
+  constructor(reason: string, data: any) {
+    super("Not club user");
+    this.reason = reason;
+    this.data = data;
+  }
+}

@@ -68,4 +68,14 @@ export class alreadyClubLeaderError extends Error {
         this.data = data;
     }
 }
+export class notClubUserError extends Error {
+    errorCode = "CLUB_NOT_USER";
+    reason;
+    data;
+    constructor(reason, data) {
+        super("Not club user");
+        this.reason = reason;
+        this.data = data;
+    }
+}
 //# sourceMappingURL=errors.js.map

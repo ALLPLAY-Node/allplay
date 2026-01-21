@@ -5,6 +5,7 @@ import {
   handleClubJoin,
   handleGetJoinRequests,
   handleApproveJoinRequest,
+  handleLeaveClub,
 } from "../controllers/club.controller.js";
 import { isLogin } from "../middleware/auth.js";
 const router = express.Router();
@@ -22,5 +23,7 @@ router.post(
   isLogin,
   handleApproveJoinRequest,
 );
+
+router.delete("/clubs/:clubId/join", isLogin, handleLeaveClub);
 
 export default router;

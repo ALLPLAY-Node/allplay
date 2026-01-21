@@ -4,4 +4,5 @@ export declare const handleClubUpdate: (req: Request, res: Response, next: NextF
 export declare const handleClubJoin: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 export declare const handleGetJoinRequests: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 export declare const handleApproveJoinRequest: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+export declare const handleLeaveClub: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 //# sourceMappingURL=club.controller.d.ts.map

@@ -1,10 +1,10 @@
 import { addClub, updateClub } from "../repositories/club.repository.js";
 import { findRegionByCityAndDistrict } from "../repositories/region.repository.js";
 import { findSportByName } from "../repositories/sport-type.repository.js";
-import { getClubLeaderByClubId } from "../repositories/club-user.repository.js";
+import { getClubLeaderByClubId, clubLeave, } from "../repositories/club-user.repository.js";
 import { joinClub, isApplied, findJoinRequests, joinRequestApprove, } from "../repositories/join-request.repository.js";
 import { Age, Level } from "@prisma/client";
-import { RegionNotFoundError, SportNotFoundError, ClubLeaderNotFoundError, ClubNotAuthorizedError, AlreadyAppliedError, joinRequestNotFoundError, alreadyClubLeaderError, } from "../errors.js";
+import { RegionNotFoundError, SportNotFoundError, ClubLeaderNotFoundError, ClubNotAuthorizedError, AlreadyAppliedError, joinRequestNotFoundError, alreadyClubLeaderError, notClubUserError, } from "../errors.js";
 export const clubAdd = async (clubData, userId) => {
     const region = await findRegionByCityAndDistrict(clubData.city, clubData.district);
     if (!region) {
@@ -73,6 +73,20 @@ export const approveJoinRequest = async (requestId, userId, clubId, status) => {
     const data = await joinRequestApprove(requestId, clubId, userId, status);
     if (!data) {
         throw new joinRequestNotFoundError("Join request not found", {});
+    }
+    return data;
+};
+export const leaveClub = async (userId, clubId) => {
+    const clubLeader = await getClubLeaderByClubId(BigInt(clubId));
+    if (!clubLeader) {
+        throw new ClubLeaderNotFoundError("Club leader not found", {});
+    }
+    if (clubLeader.user_id === BigInt(userId)) {
+        throw new Error("club leader cannot leave club");
+    }
+    const data = await clubLeave(BigInt(userId), BigInt(clubId));
+    if (!data) {
+        throw new notClubUserError("not club user", { userId, clubId });
     }
     return data;
 };

@@ -40,4 +40,10 @@ export declare class alreadyClubLeaderError extends Error {
     data: any;
     constructor(reason: string, data: any);
 }
+export declare class notClubUserError extends Error {
+    errorCode: string;
+    reason: string;
+    data: any;
+    constructor(reason: string, data: any);
+}
 //# sourceMappingURL=errors.d.ts.map

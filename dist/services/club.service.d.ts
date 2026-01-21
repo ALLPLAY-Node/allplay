@@ -59,5 +59,6 @@ export declare const getJoinRequests: (userId: number, clubId: number) => Promis
     user_id: bigint;
 }[]>;
 export declare const approveJoinRequest: (requestId: number, userId: number, clubId: number, status: string) => Promise<true>;
+export declare const leaveClub: (userId: number, clubId: number) => Promise<true>;
 export {};
 //# sourceMappingURL=club.service.d.ts.map

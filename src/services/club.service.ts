@@ -1,7 +1,10 @@
 import { addClub, updateClub } from "../repositories/club.repository.js";
 import { findRegionByCityAndDistrict } from "../repositories/region.repository.js";
 import { findSportByName } from "../repositories/sport-type.repository.js";
-import { getClubLeaderByClubId } from "../repositories/club-user.repository.js";
+import {
+  getClubLeaderByClubId,
+  clubLeave,
+} from "../repositories/club-user.repository.js";
 import {
   joinClub,
   isApplied,
@@ -17,6 +20,7 @@ import {
   AlreadyAppliedError,
   joinRequestNotFoundError,
   alreadyClubLeaderError,
+  notClubUserError,
 } from "../errors.js";
 
 interface clubRequest {
@@ -132,6 +136,21 @@ export const approveJoinRequest = async (
   );
   if (!data) {
     throw new joinRequestNotFoundError("Join request not found", {});
+  }
+  return data;
+};
+
+export const leaveClub = async (userId: number, clubId: number) => {
+  const clubLeader = await getClubLeaderByClubId(BigInt(clubId));
+  if (!clubLeader) {
+    throw new ClubLeaderNotFoundError("Club leader not found", {});
+  }
+  if (clubLeader.user_id === BigInt(userId)) {
+    throw new Error("club leader cannot leave club");
+  }
+  const data: boolean = await clubLeave(BigInt(userId), BigInt(clubId));
+  if (!data) {
+    throw new notClubUserError("not club user", { userId, clubId });
   }
   return data;
 };
