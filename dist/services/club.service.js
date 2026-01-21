@@ -4,14 +4,15 @@ import { findSportByName } from "../repositories/sport-type.repository.js";
 import { getClubLeaderByClubId } from "../repositories/club-user.repository.js";
 import { joinClub, isApplied, } from "../repositories/join-request.repository.js";
 import { Age, Level } from "@prisma/client";
+import { RegionNotFoundError, SportNotFoundError, ClubLeaderNotFoundError, ClubNotAuthorizedError, AlreadyAppliedError, } from "../errors.js";
 export const clubAdd = async (clubData, userId) => {
     const region = await findRegionByCityAndDistrict(clubData.city, clubData.district);
     if (!region) {
-        throw new Error("Region not found");
+        throw new RegionNotFoundError("Region not found", clubData);
     }
     const sport = await findSportByName(clubData.sportType);
     if (!sport) {
-        throw new Error("Sport type not found");
+        throw new SportNotFoundError("Sport type not found", clubData);
     }
     const club = await addClub(clubData, userId, region.id, sport.id);
     return club;
@@ -19,18 +20,18 @@ export const clubAdd = async (clubData, userId) => {
 export const clubUpdate = async (clubData, userId, clubId) => {
     const region = await findRegionByCityAndDistrict(clubData.city, clubData.district);
     if (!region) {
-        throw new Error("Region not found");
+        throw new RegionNotFoundError("Region not found", clubData);
     }
     const sport = await findSportByName(clubData.sportType);
     if (!sport) {
-        throw new Error("Sport type not found");
+        throw new SportNotFoundError("Sport type not found", clubData);
     }
     const clubLeader = await getClubLeaderByClubId(BigInt(clubId));
     if (!clubLeader) {
-        throw new Error("Club leader not found");
+        throw new ClubLeaderNotFoundError("Club leader not found", clubData);
     }
     if (clubLeader.user_id !== BigInt(userId)) {
-        throw new Error("not authorized to update this club");
+        throw new ClubNotAuthorizedError("not authorized to update this club", clubData);
     }
     const updatedClub = await updateClub(clubData, clubId, region.id, sport.id);
     return updatedClub;
@@ -38,7 +39,7 @@ export const clubUpdate = async (clubData, userId, clubId) => {
 export const clubJoin = async (userId, clubId) => {
     const isApply = await isApplied(userId, clubId);
     if (isApply) {
-        throw new Error("already applied");
+        throw new AlreadyAppliedError("already applied", { userId, clubId });
     }
     const joinRequest = await joinClub(userId, clubId);
     return joinRequest;

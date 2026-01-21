@@ -33,6 +33,10 @@ app.use((req, res, next) => {
     };
     next();
 });
+app.use(clubRouter);
+app.get("/", (req, res) => {
+    res.send("Hello World!");
+});
 /**
  * 전역 오류를 처리하기 위한 미들웨어
  */
@@ -46,10 +50,6 @@ app.use((err, req, res, next) => {
         reason: err.reason || err.message || null,
         data: err.data || null,
     });
-});
-app.use(clubRouter);
-app.get("/", (req, res) => {
-    res.send("Hello World!");
 });
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
