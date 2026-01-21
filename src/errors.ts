@@ -52,3 +52,14 @@ export class AlreadyAppliedError extends Error {
     this.data = data;
   }
 }
+
+export class joinRequestNotFoundError extends Error {
+  errorCode = "CLUB_JOIN_REQUEST_NOT_FOUND";
+  reason: string;
+  data: any;
+  constructor(reason: string, data: any) {
+    super("Join request not found");
+    this.reason = reason;
+    this.data = data;
+  }
+}

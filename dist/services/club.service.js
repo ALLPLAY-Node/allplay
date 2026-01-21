@@ -4,7 +4,7 @@ import { findSportByName } from "../repositories/sport-type.repository.js";
 import { getClubLeaderByClubId } from "../repositories/club-user.repository.js";
 import { joinClub, isApplied, findJoinRequests, joinRequestApprove, } from "../repositories/join-request.repository.js";
 import { Age, Level } from "@prisma/client";
-import { RegionNotFoundError, SportNotFoundError, ClubLeaderNotFoundError, ClubNotAuthorizedError, AlreadyAppliedError, } from "../errors.js";
+import { RegionNotFoundError, SportNotFoundError, ClubLeaderNotFoundError, ClubNotAuthorizedError, AlreadyAppliedError, joinRequestNotFoundError, } from "../errors.js";
 export const clubAdd = async (clubData, userId) => {
     const region = await findRegionByCityAndDistrict(clubData.city, clubData.district);
     if (!region) {
@@ -64,6 +64,9 @@ export const approveJoinRequest = async (requestId, userId, clubId, status) => {
         throw new ClubNotAuthorizedError("not authorized to update this club", {});
     }
     const data = await joinRequestApprove(requestId, clubId, userId, status);
+    if (!data) {
+        throw new joinRequestNotFoundError("Join request not found", {});
+    }
     return data;
 };
 //# sourceMappingURL=club.service.js.map

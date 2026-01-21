@@ -15,6 +15,7 @@ import {
   ClubLeaderNotFoundError,
   ClubNotAuthorizedError,
   AlreadyAppliedError,
+  joinRequestNotFoundError,
 } from "../errors.js";
 
 interface clubRequest {
@@ -121,5 +122,8 @@ export const approveJoinRequest = async (
     userId,
     status,
   );
+  if (!data) {
+    throw new joinRequestNotFoundError("Join request not found", {});
+  }
   return data;
 };

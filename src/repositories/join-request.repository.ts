@@ -35,15 +35,19 @@ export const findJoinRequests = async (clubId: number) => {
 };
 
 const deleteJoinRequest = async (requestId: number) => {
-  const joinRequest = await prisma.joinRequest.delete({
-    where: {
-      id: BigInt(requestId),
-    },
-  });
-  if (joinRequest) {
-    return true;
+  try {
+    const joinRequest = await prisma.joinRequest.delete({
+      where: {
+        id: BigInt(requestId),
+      },
+    });
+    if (joinRequest) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    return false;
   }
-  return false;
 };
 
 export const joinRequestApprove = async (

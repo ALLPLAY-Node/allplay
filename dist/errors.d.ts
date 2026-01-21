@@ -28,4 +28,10 @@ export declare class AlreadyAppliedError extends Error {
     data: any;
     constructor(reason: string, data: any);
 }
+export declare class joinRequestNotFoundError extends Error {
+    errorCode: string;
+    reason: string;
+    data: any;
+    constructor(reason: string, data: any);
+}
 //# sourceMappingURL=errors.d.ts.map

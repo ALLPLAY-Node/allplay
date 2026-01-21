@@ -58,6 +58,6 @@ export declare const getJoinRequests: (userId: number, clubId: number) => Promis
     club_id: bigint;
     user_id: bigint;
 }[]>;
-export declare const approveJoinRequest: (requestId: number, userId: number, clubId: number, status: string) => Promise<boolean>;
+export declare const approveJoinRequest: (requestId: number, userId: number, clubId: number, status: string) => Promise<true>;
 export {};
 //# sourceMappingURL=club.service.d.ts.map
