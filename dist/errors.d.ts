@@ -1,47 +1,63 @@
+import { StatusCodes } from "http-status-codes";
 export declare class RegionNotFoundError extends Error {
     errorCode: string;
+    statusCode: StatusCodes;
     reason: string;
     data: any;
     constructor(reason: string, data: any);
 }
 export declare class SportNotFoundError extends Error {
     errorCode: string;
+    statusCode: StatusCodes;
+    reason: string;
+    data: any;
+    constructor(reason: string, data: any);
+}
+export declare class ClubNotFoundError extends Error {
+    errorCode: string;
+    statusCode: StatusCodes;
     reason: string;
     data: any;
     constructor(reason: string, data: any);
 }
 export declare class ClubLeaderNotFoundError extends Error {
     errorCode: string;
+    statusCode: StatusCodes;
     reason: string;
     data: any;
     constructor(reason: string, data: any);
 }
 export declare class ClubNotAuthorizedError extends Error {
     errorCode: string;
+    statusCode: StatusCodes;
     reason: string;
     data: any;
     constructor(reason: string, data: any);
 }
 export declare class AlreadyAppliedError extends Error {
     errorCode: string;
+    statusCode: StatusCodes;
     reason: string;
     data: any;
     constructor(reason: string, data: any);
 }
-export declare class joinRequestNotFoundError extends Error {
+export declare class JoinRequestNotFoundError extends Error {
     errorCode: string;
+    statusCode: StatusCodes;
     reason: string;
     data: any;
     constructor(reason: string, data: any);
 }
-export declare class alreadyClubLeaderError extends Error {
+export declare class AlreadyClubLeaderError extends Error {
     errorCode: string;
+    statusCode: StatusCodes;
     reason: string;
     data: any;
     constructor(reason: string, data: any);
 }
-export declare class notClubUserError extends Error {
+export declare class NotClubUserError extends Error {
     errorCode: string;
+    statusCode: StatusCodes;
     reason: string;
     data: any;
     constructor(reason: string, data: any);

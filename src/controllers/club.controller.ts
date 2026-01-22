@@ -15,6 +15,7 @@ import {
   clubListDtos,
   clubResponseDto,
 } from "../dtos/club.dto.js";
+import { ClubNotFoundError } from "../errors.js";
 import { StatusCodes } from "http-status-codes";
 
 export const handleClubAdd = async (
@@ -85,11 +86,7 @@ export const handleGetClub = async (
   const clubId = Number(req.params.clubId);
   const club = await getClub(clubId);
   if (!club) {
-    res.status(StatusCodes.NOT_FOUND).error({
-      errorCode: "CLUB_NOT_FOUND",
-      reason: "동호회를 찾을 수 없습니다",
-    });
-    return;
+    throw new ClubNotFoundError("동호회를 찾을 수 없습니다", { clubId });
   }
   res.status(StatusCodes.OK).success("동호회 정보", clubResponseDto(club));
 };

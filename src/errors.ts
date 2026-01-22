@@ -1,5 +1,8 @@
+import { StatusCodes } from "http-status-codes";
+
 export class RegionNotFoundError extends Error {
   errorCode = "CLUB_REGION_NOT_FOUND";
+  statusCode = StatusCodes.NOT_FOUND;
   reason: string;
   data: any;
   constructor(reason: string, data: any) {
@@ -11,6 +14,7 @@ export class RegionNotFoundError extends Error {
 
 export class SportNotFoundError extends Error {
   errorCode = "CLUB_SPORT_NOT_FOUND";
+  statusCode = StatusCodes.NOT_FOUND;
   reason: string;
   data: any;
   constructor(reason: string, data: any) {
@@ -20,8 +24,21 @@ export class SportNotFoundError extends Error {
   }
 }
 
+export class ClubNotFoundError extends Error {
+  errorCode = "CLUB_NOT_FOUND";
+  statusCode = StatusCodes.NOT_FOUND;
+  reason: string;
+  data: any;
+  constructor(reason: string, data: any) {
+    super("Club not found");
+    this.reason = reason;
+    this.data = data;
+  }
+}
+
 export class ClubLeaderNotFoundError extends Error {
   errorCode = "CLUB_LEADER_NOT_FOUND";
+  statusCode = StatusCodes.NOT_FOUND;
   reason: string;
   data: any;
   constructor(reason: string, data: any) {
@@ -33,6 +50,7 @@ export class ClubLeaderNotFoundError extends Error {
 
 export class ClubNotAuthorizedError extends Error {
   errorCode = "CLUB_NOT_AUTHORIZED";
+  statusCode = StatusCodes.FORBIDDEN;
   reason: string;
   data: any;
   constructor(reason: string, data: any) {
@@ -44,6 +62,7 @@ export class ClubNotAuthorizedError extends Error {
 
 export class AlreadyAppliedError extends Error {
   errorCode = "CLUB_ALREADY_APPLIED";
+  statusCode = StatusCodes.CONFLICT;
   reason: string;
   data: any;
   constructor(reason: string, data: any) {
@@ -53,8 +72,9 @@ export class AlreadyAppliedError extends Error {
   }
 }
 
-export class joinRequestNotFoundError extends Error {
+export class JoinRequestNotFoundError extends Error {
   errorCode = "CLUB_JOIN_REQUEST_NOT_FOUND";
+  statusCode = StatusCodes.NOT_FOUND;
   reason: string;
   data: any;
   constructor(reason: string, data: any) {
@@ -64,8 +84,9 @@ export class joinRequestNotFoundError extends Error {
   }
 }
 
-export class alreadyClubLeaderError extends Error {
+export class AlreadyClubLeaderError extends Error {
   errorCode = "CLUB_ALREADY_LEADER";
+  statusCode = StatusCodes.CONFLICT;
   reason: string;
   data: any;
   constructor(reason: string, data: any) {
@@ -75,8 +96,9 @@ export class alreadyClubLeaderError extends Error {
   }
 }
 
-export class notClubUserError extends Error {
+export class NotClubUserError extends Error {
   errorCode = "CLUB_NOT_USER";
+  statusCode = StatusCodes.BAD_REQUEST;
   reason: string;
   data: any;
   constructor(reason: string, data: any) {
