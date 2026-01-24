@@ -10,7 +10,6 @@ import {
   getClub,
 } from "../services/club.service.js";
 import {
-  clubDtos,
   joinRequestDtos,
   clubListDtos,
   clubResponseDto,
@@ -24,7 +23,7 @@ export const handleClubAdd = async (
   next: NextFunction,
 ): Promise<void> => {
   const userId = (req as any).user.id;
-  const club = await clubAdd(clubDtos(req.body), userId);
+  const club = await clubAdd(req.body, userId);
   res.status(StatusCodes.OK).success("동호회가 성공적으로 등록되었습니다", {
     id: club.id,
     clubName: club.name,
@@ -38,11 +37,7 @@ export const handleClubUpdate = async (
   next: NextFunction,
 ): Promise<void> => {
   const userId = (req as any).user.id;
-  const club = await clubUpdate(
-    clubDtos(req.body),
-    userId,
-    Number(req.params.clubId),
-  );
+  const club = await clubUpdate(req.body, userId, Number(req.params.clubId));
   res
     .status(StatusCodes.OK)
     .success("동호회 정보가 성공적으로 수정되었습니다", {
@@ -142,6 +137,6 @@ export const handleLeaveClub = async (
 ): Promise<void> => {
   const userId = (req as any).user.id;
   const clubId = Number(req.params.clubId);
-  const data = await leaveClub(userId, clubId);
+  await leaveClub(userId, clubId);
   res.status(StatusCodes.OK).success("탈퇴 완료", {});
 };

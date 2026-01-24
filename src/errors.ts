@@ -107,3 +107,15 @@ export class NotClubUserError extends Error {
     this.data = data;
   }
 }
+
+export class ClubLeaderCannotLeaveError extends Error {
+  errorCode = "CLUB_LEADER_CANNOT_LEAVE";
+  statusCode = StatusCodes.FORBIDDEN;
+  reason: string;
+  data: any;
+  constructor(reason: string, data: any) {
+    super("Club leader cannot leave");
+    this.reason = reason;
+    this.data = data;
+  }
+}

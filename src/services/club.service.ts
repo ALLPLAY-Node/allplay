@@ -17,7 +17,7 @@ import {
   joinRequestApprove,
 } from "../repositories/join-request.repository.js";
 import { addClubPhotos } from "../repositories/clubPhoto.repository.js";
-import { Age, Level } from "@prisma/client";
+import { Age } from "@prisma/client";
 import {
   RegionNotFoundError,
   SportNotFoundError,
@@ -27,6 +27,7 @@ import {
   JoinRequestNotFoundError,
   AlreadyClubLeaderError,
   NotClubUserError,
+  ClubLeaderCannotLeaveError,
 } from "../errors.js";
 import type { ClubRequest } from "../dtos/club.dto.js";
 
@@ -128,18 +129,25 @@ export const getJoinRequests = async (userId: number, clubId: number) => {
     throw new ClubLeaderNotFoundError("Club leader not found", {});
   }
   if (clubLeader.user_id !== BigInt(userId)) {
-    throw new ClubNotAuthorizedError("not authorized to update this club", {});
+    throw new ClubNotAuthorizedError(
+      "not authorized to manage join requests",
+      {},
+    );
   }
-
   const joinRequests = await findJoinRequests(clubId);
   return joinRequests;
 };
+
+enum Status {
+  APPROVED = "APPROVED",
+  REJECTED = "REJECTED",
+}
 
 export const approveJoinRequest = async (
   requestId: number,
   userId: number,
   clubId: number,
-  status: string,
+  status: Status,
 ) => {
   const clubLeader = await getClubLeaderByClubId(BigInt(clubId));
   if (!clubLeader) {
@@ -149,12 +157,7 @@ export const approveJoinRequest = async (
     throw new ClubNotAuthorizedError("not authorized to update this club", {});
   }
 
-  const data: boolean = await joinRequestApprove(
-    requestId,
-    clubId,
-    userId,
-    status,
-  );
+  const data = await joinRequestApprove(requestId, clubId, status);
   if (!data) {
     throw new JoinRequestNotFoundError("Join request not found", {});
   }
@@ -167,7 +170,7 @@ export const leaveClub = async (userId: number, clubId: number) => {
     throw new ClubLeaderNotFoundError("Club leader not found", {});
   }
   if (clubLeader.user_id === BigInt(userId)) {
-    throw new Error("club leader cannot leave club");
+    throw new ClubLeaderCannotLeaveError("club leader cannot leave club", {});
   }
   const data: boolean = await clubLeave(BigInt(userId), BigInt(clubId));
   if (!data) {

@@ -1,5 +1,5 @@
 import { prisma } from "../db.config.js";
-import { Age, Level } from "@prisma/client";
+import { Age } from "@prisma/client";
 import type { ClubRequest } from "../dtos/club.dto.js";
 
 export const addClub = async (
@@ -99,7 +99,7 @@ export const findClubs = async (
     },
   });
 
-  return clubs as unknown as ClubListData[];
+  return clubs;
 };
 
 export const findClubById = async (
