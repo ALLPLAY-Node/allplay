@@ -1,4 +1,5 @@
 import type { FacilityDto, FacilityReviewDto } from "../dtos/facility.dto.js";
+import type { Review } from "../dtos/review.dto.js";
 export declare const facilityAdd: (facility: FacilityDto, operator_id: bigint) => Promise<{
     id: bigint;
     name: string | null;
@@ -14,6 +15,7 @@ export declare const facilityAdd: (facility: FacilityDto, operator_id: bigint) =
     created_at: Date | null;
     updated_at: Date | null;
     operating_hours: string | null;
+    is_public: boolean | null;
     operator_id: bigint;
     region_id: bigint;
 }>;
@@ -24,5 +26,9 @@ export declare const facilityReviewAdd: (review: FacilityReviewDto, facilityId: 
     facility_id: bigint;
     text: string | null;
     user_id: bigint;
+}>;
+export declare const facilityReviewGet: (facilityId: bigint, cursor: bigint) => Promise<{
+    data: Review[];
+    hasNext: boolean;
 }>;
 //# sourceMappingURL=facility.service.d.ts.map

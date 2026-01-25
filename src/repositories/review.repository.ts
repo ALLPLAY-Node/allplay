@@ -31,3 +31,22 @@ export const addReview = async (
   });
   return data;
 };
+
+export const getFacilityReview = async (facilityId: bigint, cursor: bigint) => {
+  const data = await prisma.review.findMany({
+    where: {
+      id: {
+        gt: cursor,
+      },
+      facility_id: facilityId,
+    },
+    include: {
+      photos: true,
+    },
+    take: 11,
+    orderBy: {
+      id: "asc",
+    },
+  });
+  return data;
+};

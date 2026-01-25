@@ -1,5 +1,6 @@
-import { facilityAdd, facilityReviewAdd, } from "../services/facility.service.js";
+import { facilityAdd, facilityReviewAdd, facilityReviewGet, } from "../services/facility.service.js";
 import { facilityDto, facilityReviewDto } from "../dtos/facility.dto.js";
+import { reviewDto } from "../dtos/review.dto.js";
 import { StatusCodes } from "http-status-codes";
 export const createFacility = async (req, res, next) => {
     const operatorId = BigInt(req.user.id);
@@ -19,6 +20,18 @@ export const createFacilityReview = async (req, res, next) => {
         facilityId: review.facility_id.toString(),
         text: review.text,
         createdAt: review.created_at,
+    });
+};
+export const getFacilityReview = async (req, res, next) => {
+    const facilityId = Number(req.params.facilityId);
+    const cursor = Number(req.query.cursor) || 0;
+    const reviews = await facilityReviewGet(BigInt(facilityId), BigInt(cursor));
+    res.status(StatusCodes.OK).success("", {
+        data: reviewDto(reviews.data),
+        hasNext: reviews.hasNext,
+        cursor: reviews.data.length > 0
+            ? reviews.data[reviews.data.length - 1].id.toString()
+            : "",
     });
 };
 //# sourceMappingURL=facility.controller.js.map

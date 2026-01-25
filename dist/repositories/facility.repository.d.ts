@@ -14,6 +14,7 @@ export declare const addFacility: (facility: FacilityDto, operator_id: bigint, r
     created_at: Date | null;
     updated_at: Date | null;
     operating_hours: string | null;
+    is_public: boolean | null;
     operator_id: bigint;
     region_id: bigint;
 }>;

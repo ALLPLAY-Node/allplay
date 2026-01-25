@@ -24,4 +24,22 @@ export const addReview = async (review, facilityId, userId) => {
     });
     return data;
 };
+export const getFacilityReview = async (facilityId, cursor) => {
+    const data = await prisma.review.findMany({
+        where: {
+            id: {
+                gt: cursor,
+            },
+            facility_id: facilityId,
+        },
+        include: {
+            photos: true,
+        },
+        take: 11,
+        orderBy: {
+            id: "asc",
+        },
+    });
+    return data;
+};
 //# sourceMappingURL=review.repository.js.map
