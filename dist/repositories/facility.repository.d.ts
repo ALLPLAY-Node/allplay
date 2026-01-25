@@ -15,6 +15,7 @@ export declare const addFacility: (facility: FacilityDto, operator_id: bigint, r
     updated_at: Date | null;
     operating_hours: string | null;
     is_public: boolean | null;
+    apply_method: string | null;
     operator_id: bigint;
     region_id: bigint;
 }>;
@@ -68,7 +69,44 @@ export declare const getFacilityById: (facilityId: bigint) => Promise<({
     updated_at: Date | null;
     operating_hours: string | null;
     is_public: boolean | null;
+    apply_method: string | null;
     operator_id: bigint;
     region_id: bigint;
 }) | null>;
+export declare const getFacilityList: (cursor: number, regionId: number | null, isResevable: boolean | null, isPublic: boolean | null, isFree: boolean | null, keyword: string | null, sportType: number | null) => Promise<({
+    region: {
+        id: bigint;
+        city: string | null;
+        district: string | null;
+    };
+    sport: {
+        id: bigint;
+        sport_type: string | null;
+    };
+    photos: {
+        id: bigint;
+        facility_photo_url: string | null;
+        uploaded_at: Date | null;
+        facility_id: bigint;
+    }[];
+} & {
+    id: bigint;
+    name: string | null;
+    sport_type: bigint;
+    address: string | null;
+    cost: string | null;
+    introduction: string | null;
+    information: string | null;
+    usage_guide: string | null;
+    contact_number: string | null;
+    url: string | null;
+    link: string | null;
+    created_at: Date | null;
+    updated_at: Date | null;
+    operating_hours: string | null;
+    is_public: boolean | null;
+    apply_method: string | null;
+    operator_id: bigint;
+    region_id: bigint;
+})[]>;
 //# sourceMappingURL=facility.repository.d.ts.map

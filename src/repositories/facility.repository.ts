@@ -53,3 +53,58 @@ export const getFacilityById = async (facilityId: bigint) => {
   });
   return data;
 };
+
+export const getFacilityList = async (
+  cursor: number,
+  regionId: number | null,
+  isResevable: boolean | null,
+  isPublic: boolean | null,
+  isFree: boolean | null,
+  keyword: string | null,
+  sportType: number | null,
+) => {
+  const where: any = {
+    id: {
+      gt: BigInt(cursor),
+    },
+    region_id: regionId !== null ? BigInt(regionId) : undefined,
+    is_public: isPublic !== null ? isPublic : undefined,
+    sport_type: sportType !== null ? BigInt(sportType) : undefined,
+    name: keyword ? { contains: keyword } : undefined,
+    AND: [
+      isResevable === true
+        ? { apply_method: { not: null } }
+        : isResevable === false
+          ? { apply_method: null }
+          : undefined,
+      isFree === true
+        ? { OR: [{ cost: "0" }, { cost: "" }, { cost: null }] }
+        : isFree === false
+          ? { cost: { notIn: ["0", ""], not: null } }
+          : undefined,
+    ].filter(Boolean),
+  };
+
+  console.log(
+    "Final Prisma Where:",
+    JSON.stringify(
+      where,
+      (k, v) => (typeof v === "bigint" ? v.toString() : v),
+      2,
+    ),
+  );
+
+  const data = await prisma.sportFacilities.findMany({
+    where,
+    take: 11,
+    include: {
+      photos: true,
+      region: true,
+      sport: true,
+    },
+    orderBy: {
+      id: "asc",
+    },
+  });
+  return data;
+};

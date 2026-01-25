@@ -51,6 +51,7 @@ model SportFacilities {
   region_id      BigInt
   operating_hours String? @db.VarChar(15)
   is_public      Boolean? @default(false)
+  apply_method   String? @db.VarChar(30)
 
   @@map("sport_facilities")
 

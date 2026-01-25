@@ -1,4 +1,4 @@
-import { facilityAdd, facilityReviewAdd, facilityReviewGet, facilityGet, } from "../services/facility.service.js";
+import { facilityAdd, facilityReviewAdd, facilityReviewGet, facilityGet, facilityListGet, } from "../services/facility.service.js";
 import { facilityDto, facilityReviewDto, facilityResponseDto, } from "../dtos/facility.dto.js";
 import { reviewDto } from "../dtos/review.dto.js";
 import { StatusCodes } from "http-status-codes";
@@ -38,5 +38,35 @@ export const getFacility = async (req, res, next) => {
     const facilityId = Number(req.params.facilityId);
     const facility = await facilityGet(BigInt(facilityId));
     res.status(StatusCodes.OK).success("", facilityResponseDto(facility));
+};
+export const getFacilityList = async (req, res, next) => {
+    console.log("getFacilityList Query Params:", req.query);
+    const cursor = Number(req.query.cursor) || 0;
+    const regionId = Number(req.query.regionId) || null;
+    const isResevable = req.query.isResevable === "true"
+        ? true
+        : req.query.isResevable === "false"
+            ? false
+            : null;
+    const isPublic = req.query.isPublic === "true"
+        ? true
+        : req.query.isPublic === "false"
+            ? false
+            : null;
+    const isFree = req.query.isFree === "true"
+        ? true
+        : req.query.isFree === "false"
+            ? false
+            : null;
+    const keyword = typeof req.query.keyword === "string" ? req.query.keyword : null;
+    const sportType = Number(req.query.sportId) || null;
+    const facilities = await facilityListGet(cursor, regionId, isResevable, isPublic, isFree, keyword, sportType);
+    res.status(StatusCodes.OK).success("", {
+        data: facilities.data.map(facilityResponseDto),
+        hasNext: facilities.hasNext,
+        cursor: facilities.data.length > 0
+            ? facilities.data[facilities.data.length - 1].id.toString()
+            : "0",
+    });
 };
 //# sourceMappingURL=facility.controller.js.map

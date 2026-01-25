@@ -5,6 +5,7 @@ import { findSportByName } from "../repositories/sport-type.repository.js";
 import {
   addFacility,
   getFacilityById,
+  getFacilityList,
 } from "../repositories/facility.repository.js";
 import {
   addReview,
@@ -70,4 +71,30 @@ export const facilityGet = async (facilityId: bigint) => {
     );
   }
   return data;
+};
+
+export const facilityListGet = async (
+  cursor: number,
+  regionId: number | null,
+  isResevable: boolean | null,
+  isPublic: boolean | null,
+  isFree: boolean | null,
+  keyword: string | null,
+  sportId: number | null,
+) => {
+  const data = await getFacilityList(
+    cursor,
+    regionId,
+    isResevable,
+    isPublic,
+    isFree,
+    keyword,
+    sportId,
+  );
+  let hasNext = false;
+  if (data.length > 10) {
+    data.pop();
+    hasNext = true;
+  }
+  return { data, hasNext };
 };
