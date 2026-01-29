@@ -1,9 +1,13 @@
 import { StatusCodes } from "http-status-codes";
+export declare class InvalidFileNameError extends Error {
 export declare class RegionNotFoundError extends Error {
     errorCode: string;
     statusCode: StatusCodes;
     reason: string;
     data: any;
+    constructor(message: string, data: any);
+}
+export declare class MissingRequiredParametersError extends Error {
     constructor(reason: string, data: any);
 }
 export declare class SportNotFoundError extends Error {
@@ -11,6 +15,9 @@ export declare class SportNotFoundError extends Error {
     statusCode: StatusCodes;
     reason: string;
     data: any;
+    constructor(message: string, data: any);
+}
+export declare class InvalidOperationError extends Error {
     constructor(reason: string, data: any);
 }
 export declare class ClubNotFoundError extends Error {
@@ -18,6 +25,7 @@ export declare class ClubNotFoundError extends Error {
     statusCode: StatusCodes;
     reason: string;
     data: any;
+    constructor(message: string, data: any);
     constructor(reason: string, data: any);
 }
 export declare class ClubLeaderNotFoundError extends Error {

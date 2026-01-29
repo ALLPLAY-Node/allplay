@@ -1,5 +1,14 @@
 import { StatusCodes } from "http-status-codes";
 
+export class InvalidFileNameError extends Error {
+  errorCode = "PRESIGNED_URL_FILE_NAME_ERROR";
+  statusCode = StatusCodes.BAD_REQUEST;
+  reason: string;
+  data: any;
+  constructor(message: string, data: any) {
+    super(message);
+    this.name = "InvalidFileNameError";
+    this.reason = message;
 export class RegionNotFoundError extends Error {
   errorCode = "CLUB_REGION_NOT_FOUND";
   statusCode = StatusCodes.NOT_FOUND;
@@ -12,6 +21,15 @@ export class RegionNotFoundError extends Error {
   }
 }
 
+export class MissingRequiredParametersError extends Error {
+  errorCode = "PRESIGNED_URL_MISSING_REQUIRED_PARAMETERS_ERROR";
+  statusCode = StatusCodes.BAD_REQUEST;
+  reason: string;
+  data: any;
+  constructor(message: string, data: any) {
+    super(message);
+    this.name = "MissingRequiredParametersError";
+    this.reason = message;
 export class SportNotFoundError extends Error {
   errorCode = "CLUB_SPORT_NOT_FOUND";
   statusCode = StatusCodes.NOT_FOUND;
@@ -96,6 +114,15 @@ export class AlreadyClubLeaderError extends Error {
   }
 }
 
+export class InvalidOperationError extends Error {
+  errorCode = "PRESIGNED_URL_INVALID_OPERATION_ERROR";
+  statusCode = StatusCodes.BAD_REQUEST;
+  reason: string;
+  data: any;
+  constructor(message: string, data: any) {
+    super(message);
+    this.name = "InvalidOperationError";
+    this.reason = message;
 export class NotClubUserError extends Error {
   errorCode = "CLUB_NOT_USER";
   statusCode = StatusCodes.BAD_REQUEST;

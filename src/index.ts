@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import { PrismaClient } from "@prisma/client";
+import presignedUrlRouter from "./routes/presigned-url.routes.js";
 import clubRouter from "./routes/club.routes.js";
 
 dotenv.config();
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(presignedUrlRouter);
 app.use(clubRouter);
 
 app.get("/", (req, res) => {
@@ -56,6 +58,14 @@ app.use((err: any, req: any, res: any, next: any) => {
     reason: err.reason || err.message || null,
     data: err.data || null,
   });
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
 
 app.listen(port, () => {
