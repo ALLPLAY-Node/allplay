@@ -6,7 +6,7 @@ export const handleClubAdd = async (req, res, next) => {
     const userId = req.user.id;
     const club = await clubAdd(req.body, userId);
     res.status(StatusCodes.OK).success("동호회가 성공적으로 등록되었습니다", {
-        id: club.id,
+        id: club.id.toString(),
         clubName: club.name,
         createdAt: club.created_at,
     });
@@ -17,7 +17,7 @@ export const handleClubUpdate = async (req, res, next) => {
     res
         .status(StatusCodes.OK)
         .success("동호회 정보가 성공적으로 수정되었습니다", {
-        id: club.id,
+        id: club.id.toString(),
         clubName: club.name,
         createdAt: club.created_at,
     });
@@ -33,7 +33,7 @@ export const handleGetClubs = async (req, res, next) => {
     const len = clubs.length - 1;
     res.status(StatusCodes.OK).success("동호회 목록", {
         items: clubListDtos(clubs),
-        cursor: clubs[len]?.id ?? null,
+        cursor: clubs[len]?.id.toString() ?? null,
         hasNext: data.hasNext,
     });
 };
@@ -49,8 +49,8 @@ export const handleClubJoin = async (req, res, next) => {
     const userId = req.user.id;
     const joinRequest = await clubJoin(userId, Number(req.params.clubId));
     res.status(StatusCodes.OK).success("가입 신청 완료", {
-        clubId: joinRequest.club_id,
-        userId: joinRequest.user_id,
+        clubId: joinRequest.club_id.toString(),
+        userId: joinRequest.user_id.toString(),
         createdAt: joinRequest.created_at,
     });
 };

@@ -1,8 +1,8 @@
 export declare const getClubLeaderByClubId: (clubId: bigint) => Promise<{
     id: bigint;
+    user_id: bigint;
     created_at: Date | null;
     updated_at: Date | null;
-    user_id: bigint;
     club_id: bigint;
     is_leader: boolean | null;
 } | null>;

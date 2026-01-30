@@ -1,3 +1,2 @@
-import type { NextFunction, Request, Response } from "express";
-export declare const isLogin: (req: Request, res: Response, next: NextFunction) => void;
+export declare const isLogin: any;
 //# sourceMappingURL=auth.d.ts.map

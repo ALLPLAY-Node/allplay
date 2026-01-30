@@ -1,6 +1,3 @@
-// 임시 미들웨어
-export const isLogin = (req, res, next) => {
-    req.user = { id: 1 };
-    next();
-};
+import passport from "passport";
+export const isLogin = passport.authenticate("jwt", { session: false });
 //# sourceMappingURL=auth.js.map

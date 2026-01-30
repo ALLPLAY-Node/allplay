@@ -1,11 +1,11 @@
 import type { FacilityReviewDto } from "../dtos/facility.dto.js";
 export declare const addReview: (review: FacilityReviewDto, facilityId: bigint, userId: bigint) => Promise<{
     id: bigint;
+    user_id: bigint;
     created_at: Date | null;
     updated_at: Date | null;
     facility_id: bigint;
     text: string | null;
-    user_id: bigint;
 }>;
 export declare const getFacilityReview: (facilityId: bigint, cursor: bigint) => Promise<({
     photos: {
@@ -16,10 +16,10 @@ export declare const getFacilityReview: (facilityId: bigint, cursor: bigint) => 
     }[];
 } & {
     id: bigint;
+    user_id: bigint;
     created_at: Date | null;
     updated_at: Date | null;
     facility_id: bigint;
     text: string | null;
-    user_id: bigint;
 })[]>;
 //# sourceMappingURL=review.repository.d.ts.map

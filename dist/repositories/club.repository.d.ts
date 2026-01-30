@@ -1,12 +1,12 @@
 import { Age } from "@prisma/client";
 import type { ClubRequest } from "../dtos/club.dto.js";
 export declare const addClub: (clubData: ClubRequest, userId: number, regionId: bigint, sportTypeId: bigint) => Promise<{
-    id: bigint;
     name: string | null;
-    contact_number: string | null;
+    id: bigint;
     created_at: Date | null;
     updated_at: Date | null;
     region_id: bigint;
+    contact_number: string | null;
     capacity: number | null;
     activity_frequency: string | null;
     join_requirement: string | null;
@@ -17,12 +17,12 @@ export declare const addClub: (clubData: ClubRequest, userId: number, regionId: 
     sport_type_id: bigint;
 }>;
 export declare const updateClub: (clubData: ClubRequest, clubId: number, regionId: bigint, sportTypeId: bigint) => Promise<{
-    id: bigint;
     name: string | null;
-    contact_number: string | null;
+    id: bigint;
     created_at: Date | null;
     updated_at: Date | null;
     region_id: bigint;
+    contact_number: string | null;
     capacity: number | null;
     activity_frequency: string | null;
     join_requirement: string | null;

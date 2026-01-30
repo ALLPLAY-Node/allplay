@@ -1,8 +1,11 @@
 import type { FacilityDto, FacilityReviewDto } from "../dtos/facility.dto.js";
 import type { Review } from "../dtos/review.dto.js";
 export declare const facilityAdd: (facility: FacilityDto, operator_id: bigint) => Promise<{
-    id: bigint;
     name: string | null;
+    id: bigint;
+    created_at: Date | null;
+    updated_at: Date | null;
+    region_id: bigint;
     sport_type: bigint;
     address: string | null;
     cost: string | null;
@@ -12,21 +15,18 @@ export declare const facilityAdd: (facility: FacilityDto, operator_id: bigint) =
     contact_number: string | null;
     url: string | null;
     link: string | null;
-    created_at: Date | null;
-    updated_at: Date | null;
     operating_hours: string | null;
     is_public: boolean | null;
     apply_method: string | null;
     operator_id: bigint;
-    region_id: bigint;
 }>;
 export declare const facilityReviewAdd: (review: FacilityReviewDto, facilityId: bigint, userId: bigint) => Promise<{
     id: bigint;
+    user_id: bigint;
     created_at: Date | null;
     updated_at: Date | null;
     facility_id: bigint;
     text: string | null;
-    user_id: bigint;
 }>;
 export declare const facilityReviewGet: (facilityId: bigint, cursor: bigint) => Promise<{
     data: Review[];
@@ -38,14 +38,17 @@ export declare const facilityGet: (facilityId: bigint) => Promise<{
         city: string | null;
         district: string | null;
     };
-    operator: {
+    photos: {
         id: bigint;
+        facility_photo_url: string | null;
+        uploaded_at: Date | null;
+        facility_id: bigint;
+    }[];
+    operator: {
         name: string | null;
-        created_at: Date | null;
-        updated_at: Date | null;
-        region_id: bigint;
-        user_id: string | null;
+        id: bigint;
         phone_number: string | null;
+        user_id: string | null;
         password: string | null;
         birth: Date | null;
         gender: import("@prisma/client").$Enums.Gender | null;
@@ -55,20 +58,20 @@ export declare const facilityGet: (facilityId: bigint) => Promise<{
         status: boolean | null;
         inactive_date: Date | null;
         privacy_agreement: bigint | null;
+        created_at: Date | null;
+        updated_at: Date | null;
+        region_id: bigint;
     };
     sport: {
         id: bigint;
         sport_type: string | null;
     };
-    photos: {
-        id: bigint;
-        facility_photo_url: string | null;
-        uploaded_at: Date | null;
-        facility_id: bigint;
-    }[];
 } & {
-    id: bigint;
     name: string | null;
+    id: bigint;
+    created_at: Date | null;
+    updated_at: Date | null;
+    region_id: bigint;
     sport_type: bigint;
     address: string | null;
     cost: string | null;
@@ -78,13 +81,10 @@ export declare const facilityGet: (facilityId: bigint) => Promise<{
     contact_number: string | null;
     url: string | null;
     link: string | null;
-    created_at: Date | null;
-    updated_at: Date | null;
     operating_hours: string | null;
     is_public: boolean | null;
     apply_method: string | null;
     operator_id: bigint;
-    region_id: bigint;
 }>;
 export declare const facilityListGet: (cursor: number, regionId: number | null, isReservable: boolean | null, isPublic: boolean | null, isFree: boolean | null, keyword: string | null, sportId: number | null) => Promise<{
     data: ({
@@ -93,19 +93,22 @@ export declare const facilityListGet: (cursor: number, regionId: number | null, 
             city: string | null;
             district: string | null;
         };
-        sport: {
-            id: bigint;
-            sport_type: string | null;
-        };
         photos: {
             id: bigint;
             facility_photo_url: string | null;
             uploaded_at: Date | null;
             facility_id: bigint;
         }[];
+        sport: {
+            id: bigint;
+            sport_type: string | null;
+        };
     } & {
-        id: bigint;
         name: string | null;
+        id: bigint;
+        created_at: Date | null;
+        updated_at: Date | null;
+        region_id: bigint;
         sport_type: bigint;
         address: string | null;
         cost: string | null;
@@ -115,13 +118,10 @@ export declare const facilityListGet: (cursor: number, regionId: number | null, 
         contact_number: string | null;
         url: string | null;
         link: string | null;
-        created_at: Date | null;
-        updated_at: Date | null;
         operating_hours: string | null;
         is_public: boolean | null;
         apply_method: string | null;
         operator_id: bigint;
-        region_id: bigint;
     })[];
     hasNext: boolean;
 }>;
