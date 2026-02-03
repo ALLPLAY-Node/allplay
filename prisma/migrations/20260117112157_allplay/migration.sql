@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `club_photos` ADD COLUMN `uploaded_at` DATETIME(6) NULL DEFAULT CURRENT_TIMESTAMP(6);
