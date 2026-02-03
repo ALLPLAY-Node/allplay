@@ -11,7 +11,10 @@ import userRouter from "./routes/user.routes.js";
 dotenv.config();
 
 const app = express();
+app.set("trust proxy", 1);
+//EC2/Docker 리버스 프록시 환경에서 HTTPS 헤더 신뢰 설정
 const port = process.env.PORT || 3000;
+const prisma = new PrismaClient();
 
 app.use(cors());
 app.use(express.static("public"));
