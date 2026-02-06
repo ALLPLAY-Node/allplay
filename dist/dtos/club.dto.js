@@ -3,7 +3,7 @@ export const clubListDtos = (data) => {
     const items = [];
     for (const item of data) {
         items.push({
-            id: item.id,
+            id: item.id.toString(),
             clubName: item.name,
             clubPhotoURL: item.photos,
             description: item.summary,
@@ -19,9 +19,9 @@ export const joinRequestDtos = (data) => {
     const items = [];
     for (const item of data) {
         items.push({
-            id: item.id,
-            clubId: item.club_id,
-            userId: item.user_id,
+            id: item.id.toString(),
+            clubId: item.club_id.toString(),
+            userId: item.user_id.toString(),
             applicationDate: item.created_at,
         });
     }
@@ -29,7 +29,7 @@ export const joinRequestDtos = (data) => {
 };
 export const clubResponseDto = (data) => {
     return {
-        id: data.id,
+        id: data.id.toString(),
         clubName: data.name,
         clubPhotoURL: data.photos,
         operator: data.members[0]?.user,

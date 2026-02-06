@@ -12,6 +12,11 @@ import userRouter from "./routes/user.routes.js";
 
 dotenv.config();
 
+// BigInt serialization support
+(BigInt.prototype as any).toJSON = function () {
+  return this.toString();
+};
+
 const app = express();
 const port = process.env.PORT || 3000; // 포트 미지정 시 3000 사용
 const prisma = new PrismaClient();
