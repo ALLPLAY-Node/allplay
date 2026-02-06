@@ -1,4 +1,4 @@
-import { AuthService } from '../services/auth.service.js';
+import { AuthService } from "../services/auth.service.js";
 export class AuthController {
     authService = new AuthService();
     // 로그인 성공 후 실행되는 콜백 로직

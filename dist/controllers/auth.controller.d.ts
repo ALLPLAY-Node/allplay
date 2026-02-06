@@ -1,4 +1,4 @@
-import type { Request, Response } from 'express';
+import type { Request, Response } from "express";
 export declare class AuthController {
     private authService;
     googleCallback: (req: Request, res: Response) => Promise<void>;

@@ -10,6 +10,8 @@ import presignedUrlRouter from "./routes/presigned-url.routes.js";
 import clubRouter from "./routes/club.routes.js";
 dotenv.config();
 const app = express();
+app.set("trust proxy", 1);
+//EC2/Docker 리버스 프록시 환경에서 HTTPS 헤더 신뢰 설정
 const port = process.env.PORT;
 const prisma = new PrismaClient();
 app.use(cors()); // cors 방식 허용
