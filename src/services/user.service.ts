@@ -14,24 +14,30 @@ export const updateProfile = async (userId: number, body: any) => {
   if (!user) throw new Error("User not found");
 
   const data = updateUserBodyDTO(body);
-  const updatedUser = await userRepo.updateUserRaw(userId, data);
-  return updatedUser;
+  return await userRepo.updateUserRaw(userId, data);
 };
 
-// 회원 탈퇴 처리
+// 회원 탈퇴
 export const quitService = async (userId: number) => {
   const user = await userRepo.findUserWithRegion(userId);
   if (!user) throw new Error("User not found");
 
+  // 별칭 안 쓰고 원본 이름 그대로 호출
   await userRepo.updateUserStatus(userId);
-  const inactiveUser = await userRepo.findUserWithRegion(userId);
-  return inactiveUser;
+
+  return await userRepo.findUserWithRegion(userId);
 };
 
-// 리뷰 조회
+// 동호회 목록 조회
+export const getClubs = async (userId: number) => {
+  return await userRepo.findUserClubs(userId);
+};
+
+// 리뷰 목록 조회
 export const getReviews = async (userId: number, reviewId?: number) => {
   const reviews = await userRepo.findUserReviews(userId, reviewId);
-  if (reviewId && reviews.length === 0) {
+
+  if (reviewId && (!reviews || reviews.length === 0)) {
     throw new Error("Review not found");
   }
   return reviews;
@@ -43,9 +49,10 @@ export const editReview = async (
   reviewId: number,
   text: string,
 ) => {
-  const review = await userRepo.findUserReviews(userId, reviewId);
-  if (!review || review.length === 0) {
-    throw new Error("수정 권한이 없거나 리뷰가 없습니다.");
+  const reviews = await userRepo.findUserReviews(userId, reviewId);
+
+  if (!reviews || reviews.length === 0) {
+    throw new Error("Review not found or permission denied");
   }
 
   return await userRepo.updateReviewRaw(reviewId, text);
