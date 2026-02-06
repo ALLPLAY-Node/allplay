@@ -31,7 +31,7 @@ export const clubListDtos = (data: ClubListData[]) => {
   const items = [];
   for (const item of data) {
     items.push({
-      id: item.id,
+      id: item.id.toString(),
       clubName: item.name,
       clubPhotoURL: item.photos,
       description: item.summary,
@@ -85,7 +85,7 @@ export interface ClubResponseData {
 
 export const clubResponseDto = (data: ClubResponseData) => {
   return {
-    id: data.id,
+    id: data.id.toString(),
     clubName: data.name,
     clubPhotoURL: data.photos,
     operator: data.members[0]?.user,

@@ -32,7 +32,7 @@ export interface ClubListData {
     };
 }
 export declare const clubListDtos: (data: ClubListData[]) => {
-    id: bigint;
+    id: string;
     clubName: string | null;
     clubPhotoURL: {
         club_photo_url: string | null;
@@ -81,7 +81,7 @@ export interface ClubResponseData {
     homepage_url: string | null;
 }
 export declare const clubResponseDto: (data: ClubResponseData) => {
-    id: bigint;
+    id: string;
     clubName: string | null;
     clubPhotoURL: {
         club_photo_url: string | null;
